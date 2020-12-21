@@ -1,0 +1,33 @@
+{
+  "name": "stock_stalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "server" : "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CustomizedMe/Stock_Stalk.git"
+  },
+  "author": "Prakhar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CustomizedMe/Stock_Stalk/issues"
+  },
+  "homepage": "https://github.com/CustomizedMe/Stock_Stalk#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
