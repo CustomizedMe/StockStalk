@@ -2,16 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const CommnentSchema = new Schema({
+const CommentSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'user'
       },
       comment: {
-        type: String,
-        required: true,
-      },
-      name : {
         type: String,
         required: true,
       },
@@ -23,30 +19,14 @@ const CommnentSchema = new Schema({
         type: Date,
         default: Date.now
       },
-      parentComment: [
-        {
-            user: {
-                type: Schema.Types.ObjectId,
-                ref: 'user'
-              },
-              comment: {
-                type: String,
-                required: true,
-              },
-              name : {
-                type: String,
-                required: true,
-              },
-              date: {
-                type: Date,
-                default: Date.now
-            },
-            editdate : {
-                type: Date,
-                default: Date.now
-              },
-        }
-      ],
+      parentComment: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+      },
+      childComment: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+      }
 
 });
 

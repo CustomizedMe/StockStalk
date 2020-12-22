@@ -14,7 +14,7 @@ const CompanySchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    scetor:{
+    sector:{
         type: String
     },
     exchange:{
