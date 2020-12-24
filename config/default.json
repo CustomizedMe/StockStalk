@@ -1,4 +1,5 @@
 {
     "mongoURI":"mongodb+srv://admin:admin@cluster-stockstalk.ote9h.mongodb.net/<dbname>?retryWrites=true&w=majority",
     "aplhaKeys" : ["4ITNOB44H0GUYPV4", "HUNUFC473NP9N7H0", "78ENTJXZGUCH5DQ6", "KSNC41IVNMQUSNEX","PYR8OOU6OP9DI7AJ"]
+    
 }
