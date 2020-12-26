@@ -3,31 +3,44 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const CommentSchema = new Schema({
-    user: {
+  symbol :{
+      type : String, 
+      required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  },
+  text: {
+    type: String,
+    required: true
+  },
+  username: {
+    type: String
+  },
+  comments: [
+    {
+      user: {
         type: Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'users'
       },
-      comment: {
+      text: {
         type: String,
-        required: true,
+        required: true
+      },
+      username: {
+        type: String
       },
       date: {
         type: Date,
         default: Date.now
-      },
-      editdate : {
-        type: Date,
-        default: Date.now
-      },
-      parentComment: {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
-      },
-      childComment: {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
       }
-
+    }
+  ],
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-module.exports = Comment = mongoose.model('comment', CommnentSchema);
+module.exports = Comment = mongoose.model('comment', CommentSchema);
