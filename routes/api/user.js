@@ -55,28 +55,54 @@ router.get('/comment/all', auth , async (req,res) => {
         res.status(500).send('Server Error');
     }
 });
-// @route Get api/user/comment/user
+// @route Get api/user/comment/:username
 // @desc get all comments 
 // @access Private
-router.get('/comment/all', auth , async (req,res) => {
+router.get("/comment/:username", async (req, res) => {
     try {
-        const allcomments = await Comment.find().sort({date: -1});
-        res.json(allcomments);
+      const Username = req.params.username; //change this to logged -in user id
+      /*const userID = User.
+      console.log(userID);
+      const result = await Comment.findById(userID).populate("posts");*/
+      const result = await Comment.find({"username" :Username}).populate("comments");
+      res.send(result);
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
+      console.log(err);
+      res.status(500)
+      .send("Server error");
     }
-});
-// @route Get api/user/comment/user
-// @desc get all comments 
+  });
+// @route Get api/user/comment/company/:symbol
+// @desc get comments in a company
 // @access Private
-router.get('/comment/all', auth , async (req,res) => {
+router.get("/comment/company/:symbol", async (req, res) => {
     try {
-        const allcomments = await Comment.find().sort({date: -1});
-        res.json(allcomments);
+      const Symbol = req.params.symbol; 
+      const result = await Comment.find({"symbol" : Symbol}).populate("comments");
+      res.send(result);
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
+      console.log(err);
+      res.status(500)
+      .send("Server error");
     }
-});
+  });
+/*
+// @route PUT api/user/comment/:comment_id
+// @desc edit the comment by id 
+// @access Private
+router.put("/comment/:comment_id", async (req, res) => {
+    try {
+        Comment.findOneAndUpdate({_id:req.params.comment_id}, req.body {
+            res.send(place);
+          });
+    } catch (err) {
+      console.log(err);
+      res.status(500)
+      .send("Server error");
+    }
+  });
+*/
+
+
+
 module.exports = router;
