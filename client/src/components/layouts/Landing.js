@@ -1,29 +1,44 @@
-
-import React from 'react';
-
+import React from "react";
+import { Jumbotron, Button } from "reactstrap";
+import bgimage from "../../assets/img/jumbotron_img.jpg";
 const Landing = () => {
+  const col = "#ffffff";
   return (
-    <section className='landing'>
-      <div className='dark-overlay'>
-        <div className='landing-inner'>
-          <h1 className='x-large'>StockStalk</h1>
-          <p className='lead'>
-            Create a developer profile/portfolio, share posts and get help from
-            other developers
-          </p>
-          <div className='buttons'>
-            <a href ='/register' className='btn btn-primary'>
-              Sign Up
-            </a>
-            <a href='/login' className='btn btn-light'>
-              Login
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <>
+      <Jumbotron
+        style={{
+          backgroundImage: `url(${bgimage})`,
+          backgroundSize: "cover",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1
+          className='display-3'
+          style={{
+            /*color: col,*/
+            textTransform: "uppercase",
+            letterSpacing: "1.08em",
+            fontFamily: "Montserrat",
+            textAlign: "center",
+          }}
+        >
+          Stock Stalk
+        </h1>
+        <p style={{ /*color: col,*/ textAlign: "center", maxWidth: "80%" }}>
+          StockStalk provides real-time market quotes, company ticker,
+          comparison of stocks and other information., Explore other investors
+          profile, their views on a company and post your views.
+        </p>
+        <p className='lead'>
+          <Button color='primary'>Learn More</Button>
+        </p>
+      </Jumbotron>
+    </>
   );
 };
-
 
 export default Landing;

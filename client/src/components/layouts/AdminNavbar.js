@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import classNames from "classnames";
 import {
   Button,
@@ -6,12 +6,16 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  UncontrolledDropdown,
+  Form,
+  FormGroup,
+  Label,
   Input,
+  UncontrolledDropdown,
   InputGroup,
   NavbarBrand,
   Navbar,
   NavLink,
+  NavItem,
   Nav,
   Container,
   Modal,
@@ -19,124 +23,130 @@ import {
   ModalHeader,
 } from "reactstrap";
 
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../actions/auth";
 
-/*const element = <h1>StockStalk</h1>; */
+const AdminNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const logged = (
+    <Nav
+      className='ml-auto'
+      navbar
+      style={{ alignItems: "center", color: "textcolor" }}
+    >
+      <NavItem>
+        <Link to='/'>Market</Link>
+      </NavItem>
+      <NavItem>
+        <Link to='/register'>Login/Register</Link>
+      </NavItem>
+      <NavItem>
+        <Link to='#'>FAQs</Link>
+      </NavItem>
+      <Form>
+        <FormGroup>
+          <div class='input-group'>
+            <i class='fa fa-search'></i>
+            <input
+              type='text'
+              class='form-control'
+              id='company'
+              placeholder='Search Company'
+            ></input>
+          </div>
+        </FormGroup>
+      </Form>
+      <UncontrolledDropdown nav>
+        <DropdownToggle
+          caret
+          color='default'
+          nav
+          onClick={(e) => e.preventDefault()}
+        >
+          <div className='photo'>
+            <img
+              alt='...'
+              src={require("./../../assets/img/anime3.png").default}
+            />
+          </div>
+          <b className='caret d-none d-lg-block d-xl-block' />
+          <p className='d-lg-none'></p>
+        </DropdownToggle>
+        <DropdownMenu className='dropdown-navbar' right tag='ul'>
+          <NavLink tag='li'>
+            <DropdownItem className='text-muted'>
+              <Link to='/profile' className='text-muted'>
+                Profile
+              </Link>
+            </DropdownItem>
+          </NavLink>
+          <DropdownItem divider tag='li' />
+          <NavLink tag='li'>
+            <DropdownItem className='text-warning'>
+              <Link to='/' onClick={logout} className='text-muted'>
+                Log out
+              </Link>
+            </DropdownItem>
+          </NavLink>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+      <li className='separator d-lg-none' />
+    </Nav>
+  );
+  const guest = (
+    <Nav className='ml-auto' navbar style={{ alignItems: "center" }}>
+      <NavItem>
+        <Link to='/'>Market</Link>
+      </NavItem>
+      <NavItem>
+        <Link to='/register'>Login/Register</Link>
+      </NavItem>
+      <NavItem>
+        <Link to='#'>FAQs</Link>
+      </NavItem>
+      <li className='separator d-lg-none' />
+    </Nav>
+  );
 
-
-function AdminNavbar(props) {
-  const [collapseOpen, setcollapseOpen] = React.useState(false);
-  const [modalSearch, setmodalSearch] = React.useState(false);
   const [color, setcolor] = React.useState("navbar-transparent");
   React.useEffect(() => {
     window.addEventListener("resize", updateColor);
-    // Specify how to clean up after this effect:
     return function cleanup() {
       window.removeEventListener("resize", updateColor);
     };
   });
+  let textcolor = "white";
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   const updateColor = () => {
-    if (window.innerWidth < 993 && collapseOpen) {
+    if (window.innerWidth < 800) {
       setcolor("bg-white");
+      textcolor = "#202020";
     } else {
+      textcolor = "white";
       setcolor("navbar-transparent");
     }
-  };
-  // this function opens and closes the collapse on small devices
-  const toggleCollapse = () => {
-    if (collapseOpen) {
-      setcolor("navbar-transparent");
-    } else {
-      setcolor("bg-white");
-    }
-    setcollapseOpen(!collapseOpen);
-  };
-  // this function is to open the Search modal
-  const toggleModalSearch = () => {
-    setmodalSearch(!modalSearch);
   };
   return (
     <>
-      <Navbar className={classNames("navbar-absolute", color)} expand="lg">
+      <Navbar className={(classNames("navbar"), color)} expand='lg'>
         <Container fluid>
-          <div className="navbar-wrapper">
-            <div
-              className={classNames("navbar-toggle d-inline", {
-                toggled: props.sidebarOpened,
-              })}
-            >
-              <NavbarToggler onClick={props.toggleSidebar}>
-                <span className="navbar-toggler-bar bar1" />
-                <span className="navbar-toggler-bar bar2" />
-                <span className="navbar-toggler-bar bar3" />
-              </NavbarToggler>
-            </div>
-            <NavbarBrand href="#pablo" onClick={(e) => e.preventDefault()}>
+          <div className='navbar-wrapper'>
+            <Link to='/' style={{ fontSize: "1.8em", color: "white" }}>
               StockStalk
-            </NavbarBrand>
+            </Link>
           </div>
-          <NavbarToggler onClick={toggleCollapse}>
-            <span className="navbar-toggler-bar navbar-kebab" />
-            <span className="navbar-toggler-bar navbar-kebab" />
-            <span className="navbar-toggler-bar navbar-kebab" />
-          </NavbarToggler>
-          <Collapse navbar isOpen={collapseOpen}>
-            <Nav className="ml-auto" navbar>
-              <InputGroup className="search-bar">
-                <Button color="link" onClick={toggleModalSearch}>
-                  <i className="tim-icons icon-zoom-split" />
-                  <span className="d-lg-none d-md-block">Search</span>
-                </Button>
-              </InputGroup>
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  nav
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <div className="photo">
-                    <img
-                      alt="..."
-                      src={require('./../../assets/img/anime3.png').default}
-                    />
-                  </div>
-                  <b className="caret d-none d-lg-block d-xl-block" />
-                  <p className="d-lg-none">Log out</p>
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-navbar" right tag="ul">
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">Profile</DropdownItem>
-                  </NavLink>
-                  <DropdownItem divider tag="li" />
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">Log out</DropdownItem>
-                  </NavLink>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <li className="separator d-lg-none" />
-            </Nav>
-          </Collapse>
+          {!loading && <Fragment>{isAuthenticated ? logged : guest}</Fragment>}
         </Container>
       </Navbar>
-      <Modal
-        modalClassName="modal-search"
-        isOpen={modalSearch}
-        toggle={toggleModalSearch}
-      >
-        <ModalHeader>
-          <Input placeholder="SEARCH" type="text" />
-          <button
-            aria-label="Close"
-            className="close"
-            onClick={toggleModalSearch}
-          >
-            <i className="tim-icons icon-simple-remove" />
-          </button>
-        </ModalHeader>
-      </Modal>
     </>
   );
-}
-
-export default AdminNavbar;
+};
+AdminNavbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, { logout })(AdminNavbar);
