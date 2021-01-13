@@ -8,9 +8,11 @@ import Landing from "./components/layouts/Landing";
 import Footer from "./components/layouts/Footer";
 import Register from "./components/auth/Register";
 import UserProfile from "./components/Profile/UserProfile";
+import ProfileForm from "./components/Profile/ProfileForm";
 import Login from "./components/auth/Login";
 import Alerts from "./components/layouts/Alert";
-
+import Market from "./components/market/Market";
+import PrivateRoute from "./components/routing/PrivateRoute";
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -40,6 +42,8 @@ const App = () => {
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/profile' component={UserProfile} />
+            <PrivateRoute path='/profileform' component={ProfileForm} />
+            <PrivateRoute path='/market' component={Market} />
           </Switch>
           <Footer />
         </Fragment>
@@ -47,5 +51,5 @@ const App = () => {
     </Provider>
   );
 };
-console.log("Running");
+//console.log("Running");
 export default App;

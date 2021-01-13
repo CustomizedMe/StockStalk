@@ -1,4 +1,3 @@
-import api from "../utils/api";
 import { setAlert } from "./alert";
 import {
   REGISTER_SUCCESS,
@@ -10,6 +9,7 @@ import {
   LOGOUT,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
+import api from "../utils/api";
 
 // Load User
 export const loadUser = () => async (dispatch) => {
@@ -40,7 +40,6 @@ export const register = (formData) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
-    //debugger;
     dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;

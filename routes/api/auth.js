@@ -137,32 +137,5 @@ router.post(
     }
   }
 );
-/* router.get("/logout/",(req,res)=>{
-    req.logout();
-    res.redirect("/");
-}); 
-*/
-
-/*
-//delete token
-User.methods.deleteToken=function(token,cb){
-    var user=this;
-
-    user.update({$unset : {token :1}},function(err,user){
-        if(err) return cb(err);
-        cb(null,user);
-    })
-}
-// @route GET api/auth/logout
-// @desc logout user
-// @access Public
-app.get('/api/logout',auth,function(req,res){
-    req.user.deleteToken(req.token,(err,user)=>{
-        if(err) return res.status(400).send(err);
-        res.sendStatus(200);
-    });
-
-}); 
-*/
 
 module.exports = router;

@@ -1,31 +1,23 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+//ReactStrap
 import classNames from "classnames";
 import {
-  Button,
-  Collapse,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   Form,
   FormGroup,
-  Label,
-  Input,
   UncontrolledDropdown,
-  InputGroup,
-  NavbarBrand,
   Navbar,
   NavLink,
   NavItem,
   Nav,
   Container,
-  Modal,
-  NavbarToggler,
-  ModalHeader,
 } from "reactstrap";
-
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+//Logout
 import { logout } from "../../actions/auth";
 
 const AdminNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
@@ -39,7 +31,7 @@ const AdminNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to='/'>Market</Link>
       </NavItem>
       <NavItem>
-        <Link to='/register'>Login/Register</Link>
+        <Link to='/compare'>Compare</Link>
       </NavItem>
       <NavItem>
         <Link to='#'>FAQs</Link>
@@ -94,6 +86,7 @@ const AdminNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li className='separator d-lg-none' />
     </Nav>
   );
+  //if User is not logged in
   const guest = (
     <Nav className='ml-auto' navbar style={{ alignItems: "center" }}>
       <NavItem>
@@ -109,39 +102,35 @@ const AdminNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     </Nav>
   );
 
-  const [color, setcolor] = React.useState("navbar-transparent");
-  React.useEffect(() => {
+  //const [color, setcolor] = React.useState("navbar-transparent");
+  /*React.useEffect(() => {
     window.addEventListener("resize", updateColor);
     return function cleanup() {
       window.removeEventListener("resize", updateColor);
     };
   });
-  let textcolor = "white";
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   const updateColor = () => {
     if (window.innerWidth < 800) {
       setcolor("bg-white");
-      textcolor = "#202020";
     } else {
-      textcolor = "white";
       setcolor("navbar-transparent");
     }
-  };
+  };*/
   return (
-    <>
-      <Navbar className={(classNames("navbar"), color)} expand='lg'>
-        <Container fluid>
-          <div className='navbar-wrapper'>
-            <Link to='/' style={{ fontSize: "1.8em", color: "white" }}>
-              StockStalk
-            </Link>
-          </div>
-          {!loading && <Fragment>{isAuthenticated ? logged : guest}</Fragment>}
-        </Container>
-      </Navbar>
-    </>
+    <Navbar className={classNames("navbar") /*,color*/} expand='lg'>
+      <Container fluid>
+        <div className='navbar-wrapper'>
+          <Link to='/' style={{ fontSize: "1.8em", color: "white" }}>
+            StockStalk
+          </Link>
+        </div>
+        {!loading && <Fragment>{isAuthenticated ? logged : guest}</Fragment>}
+      </Container>
+    </Navbar>
   );
 };
+
 AdminNavbar.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -149,4 +138,5 @@ AdminNavbar.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
+
 export default connect(mapStateToProps, { logout })(AdminNavbar);

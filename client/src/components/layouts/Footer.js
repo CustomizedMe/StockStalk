@@ -1,7 +1,7 @@
 import React from "react";
 
 // reactstrap components
-import { Container, Nav, NavItem, NavLink } from "reactstrap";
+import { Container, Nav, NavItem } from "reactstrap";
 
 function Footer() {
   return (

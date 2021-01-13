@@ -33,34 +33,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       setAlert("Passwords do not match", "danger");
     } else {
       register({ username, name, email, password });
-      /*
-      const newUser = {
-        username,
-        name,
-        email,
-        password,
-      };
-      console.log(newUser);
-      try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-        const body = JSON.stringify(newUser);
-        console.log(body);
-        const res = await axios.post("/api/auth/register/", body, {
-          headers: {
-            "content-type": "application/json",
-          },
-        });
-        console.log(res);
-      } catch (err) {
-        // console.log("line error");
-        console.error(err.response.data);
-      
-     }
-    */
     }
   };
   if (isAuthenticated) {
