@@ -7,11 +7,11 @@ export default function Register() {
   const [register, setRegister] = useState(true);
 
   return (
-    <PageLayout>
+    <PageLayout page={"enter"}>
       <section>
-        <div className='container'>
-          <ul class='nav nav-pills mx-auto text-center w-50 my-3'>
-            <li class='nav-item'>
+        <div className="container">
+          <ul class="nav nav-pills mx-auto text-center w-50 my-3">
+            <li class="nav-item">
               <button
                 class={"nav-link " + (register ? "" : "active")}
                 onClick={() => {
@@ -21,7 +21,7 @@ export default function Register() {
                 Login
               </button>
             </li>
-            <li class='nav-item' role='presentation'>
+            <li class="nav-item" role="presentation">
               <button
                 class={"nav-link " + (register ? "active" : "")}
                 onClick={() => {

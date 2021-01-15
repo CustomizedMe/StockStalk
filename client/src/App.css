@@ -1,11 +1,21 @@
+body {
+  font-family: "Poppins";
+}
 .jumbotron {
   background: url("./Assests/img/landing_page.jpg") no-repeat 0 -200px;
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 900px;
 }
 .navbar {
   background-color: rgba(0, 0, 0, 0.2);
 }
+
+.showcase-bg {
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-top: 30%;
+}
+
 .navbar-dark1 {
   background-color: #1c2331;
 }
@@ -13,7 +23,6 @@
   border-bottom: 1px solid white;
 }
 .showcase-text {
-  margin-top: 30%;
 }
 
 .box {
@@ -21,6 +30,14 @@
   cursor: pointer;
 }
 
+.dark {
+  background-color: #1c2331;
+}
 .box:hover {
   transform: scaleY(1.05);
+}
+
+.icon:hover {
+  transform: scaleY(1.15);
+  color: steelblue;
 }

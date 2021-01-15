@@ -6,12 +6,15 @@ export default function Home() {
     <PageLayout page="home">
       <section className="jumbotron min-vh-100">
         <div className="container pt-5 text-center text-white fw-bold ">
-          <h3 className="font-monospace showcase-text ">
-            Having trouble finding the right stocks?
-          </h3>
-          <p className="fs-2">
-            Try <span className="fs-1 text-success "> Stock Stalk </span>
-          </p>
+          <div className="py-3 rounded mx-auto showcase-bg w-75">
+            <h3 className="font-monospace showcase-text ">
+              Having trouble finding the right stocks?
+            </h3>
+            <p className="fs-2">
+              Try{"     "}
+              <span className="fs-2 text-white text-uppercase">StockStalk</span>
+            </p>
+          </div>
         </div>
       </section>
       <section className="about my-5 pt-5">

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function index({ loggedIn = true, black }) {
+export default function index({ loggedIn, black }) {
   return (
     <nav
       className={
@@ -9,7 +9,7 @@ export default function index({ loggedIn = true, black }) {
       }
     >
       <div className="container text-uppercase">
-        <Link className="navbar-brand fs-1 text-light  ">
+        <Link to="/" className="navbar-brand fs-1 text-light  ">
           <span className="text-light text-uppercase fw-bold">Stock</span>
           Stalk
         </Link>
@@ -28,7 +28,7 @@ export default function index({ loggedIn = true, black }) {
               </li>
             ) : (
               <li className="nav-item">
-                <Link to="/enter" className="nav-link">
+                <Link to="/enter" className="nav-link  text-white">
                   Enter
                 </Link>
               </li>

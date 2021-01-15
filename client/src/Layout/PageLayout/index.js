@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 export default function PageLayout({ children, page }) {
-  const [black, setBlack] = useState(false);
+  const [black, setBlack] = useState(page === "home" && window.scrollY <= 200);
   // const
   window.onscroll = () => {
     const scy = window.scrollY;
@@ -14,7 +14,7 @@ export default function PageLayout({ children, page }) {
   };
   return (
     <>
-      <NavBar black={(page === "home") & black ? true : false} />
+      <NavBar black={page === "home" ? (black ? true : false) : true} />
 
       <div className="min-vh-100">{children}</div>
       <Footer />
