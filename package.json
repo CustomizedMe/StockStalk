@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/CustomizedMe/Stock_Stalk#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
     "bcryptjs": "^2.4.3",
     "compile-sass": "^1.1.1",
     "config": "^3.3.3",
