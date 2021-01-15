@@ -1,11 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Home from "../Component/Home";
-// eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
+import Register from "../Component/Register";
+export default function AppRoute() {
   return (
     <>
-      <Route path="/" component={Home} />
+      <Route exact path='/' component={Home} />
+      <Route exact path='/enter' component={Register} />
+      {/* <Route path = "/login" component = {Login}/> */}
     </>
   );
-};
+}
