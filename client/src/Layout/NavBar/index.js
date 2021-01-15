@@ -1,43 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function index({ loggedIn = true }) {
+export default function index({ loggedIn = true, black }) {
   return (
-    <nav className='navbar navbar-dark py-4 bg-primary navbar-expand-lg'>
-      <div className='container '>
-        <Link className='navbar-brand fs-1 fw-5 '>
-          <span className='text-dark text-uppercase'>Stock</span>Stalk
+    <nav
+      className={
+        "navbar fixed-top navbar-expand-lg navbar-dark" +
+        (black ? " navbar-dark1" : "")
+      }
+    >
+      <div className="container text-uppercase">
+        <Link className="navbar-brand fs-1 text-light  ">
+          <span className="text-light text-uppercase fw-bold">Stock</span>
+          Stalk
         </Link>
-        <div className='collapse navbar-collapse text-light '>
-          <ul className='navbar-nav ms-auto me-5'>
-            <li className='nav-item'>
-              <Link className='nav-link'> Market</Link>
+        <div className="collapse navbar-collapse  ">
+          <ul className="navbar-nav ms-auto me-5">
+            <li className="nav-item">
+              <Link className="nav-link text-white"> Market</Link>
             </li>
 
-            <li className='nav-item'>
-              <Link className='nav-link'> FAQs</Link>
+            <li className="nav-item">
+              <Link className="nav-link text-white"> FAQs</Link>
             </li>
             {loggedIn ? (
-              <li className='nav-item'>
-                <Link className='nav-link'> Profile</Link>
+              <li className="nav-item">
+                <Link className="nav-link text-white"> Profile</Link>
               </li>
             ) : (
-              <li className='nav-item'>
-                <Link to='/enter' className='nav-link'>
+              <li className="nav-item">
+                <Link to="/enter" className="nav-link">
                   Enter
                 </Link>
               </li>
             )}
           </ul>
-          <form class='d-flex'>
+          <form className="d-flex">
             <input
-              class='form-control me-2'
-              type='search'
-              placeholder='Search'
-              aria-label='Search'
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
             />
-            <button class='btn btn-outline-dark' type='submit'>
-              Search
-            </button>
+            <button
+              className="btn btn-outline-light fas fa-search fa-1x"
+              type="submit"
+            ></button>
           </form>
         </div>
       </div>

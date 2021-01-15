@@ -1,6 +1,26 @@
 .jumbotron {
-  background: url("./Assests/img/stock.jfif") no-repeat 0 -200px;
-  min-height: 500px;
-  width: 100%;
+  background: url("./Assests/img/landing_page.jpg") no-repeat 0 -200px;
+  background-repeat: no-repeat;
   background-size: cover;
+}
+.navbar {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.navbar-dark1 {
+  background-color: #1c2331;
+}
+.navbar .nav-link:hover {
+  border-bottom: 1px solid white;
+}
+.showcase-text {
+  margin-top: 30%;
+}
+
+.box {
+  text-align: center;
+  cursor: pointer;
+}
+
+.box:hover {
+  transform: scaleY(1.05);
 }
