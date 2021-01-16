@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function index({ loggedIn, black }) {
+export default function index({ loggedIn, black, page }) {
   return (
     <nav
       className={
@@ -9,21 +9,31 @@ export default function index({ loggedIn, black }) {
       }
     >
       <div className="container text-uppercase">
-        <Link to="/" className="navbar-brand fs-1 text-light  ">
+        <Link to="/" className="navbar-brand fs-1 text-light">
           <span className="text-light text-uppercase fw-bold">Stock</span>
           Stalk
         </Link>
         <div className="collapse navbar-collapse  ">
           <ul className="navbar-nav ms-auto me-5">
             <li className="nav-item">
-              <Link to="/market" className="nav-link text-white">
+              <Link
+                to="/market"
+                className={
+                  "nav-link text-white" + (page === "market" ? " active" : "")
+                }
+              >
                 {" "}
                 Market
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link to="/Faqs" className="nav-link text-white">
+              <Link
+                to="/Faqs"
+                className={
+                  "nav-link text-white" + (page === "faqs" ? " active" : "")
+                }
+              >
                 {" "}
                 FAQs
               </Link>
@@ -31,7 +41,13 @@ export default function index({ loggedIn, black }) {
             {loggedIn ? (
               <>
                 <li className="nav-item">
-                  <Link to="/profile" className="nav-link text-white">
+                  <Link
+                    to="/profile"
+                    className={
+                      "nav-link text-white" +
+                      (page === "profile" ? " active" : "")
+                    }
+                  >
                     {" "}
                     Profile
                   </Link>
@@ -45,7 +61,12 @@ export default function index({ loggedIn, black }) {
               </>
             ) : (
               <li className="nav-item">
-                <Link to="/enter" className="nav-link  text-white">
+                <Link
+                  to="/enter"
+                  className={
+                    "nav-link  text-white" + (page === "enter" ? " active" : "")
+                  }
+                >
                   Enter
                 </Link>
               </li>

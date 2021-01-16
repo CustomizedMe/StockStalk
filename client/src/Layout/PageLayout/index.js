@@ -16,6 +16,7 @@ export default function PageLayout({ children, page }) {
     <>
       <NavBar
         loggedIn={true}
+        page={page}
         black={page === "home" ? (black ? true : false) : true}
       />
 

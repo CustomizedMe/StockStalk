@@ -56,3 +56,6 @@ body {
   border: 0 !important;
   border-bottom: 1px solid #1c2331 !important;
 }
+.active {
+  border-bottom: 1px solid white !important;
+}

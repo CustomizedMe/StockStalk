@@ -7,7 +7,7 @@ export default function Register() {
   const [register, setRegister] = useState(true);
 
   return (
-    <PageLayout page={"enter"}>
+    <PageLayout page="enter">
       <section className="dark min-vh-100 pb-5 padTop-5">
         <div className="container pt-5 ">
           <div className="card bg-dark text-center p-4 shadow-lg w-50 m-auto">
