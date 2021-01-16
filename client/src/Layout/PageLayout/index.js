@@ -14,7 +14,10 @@ export default function PageLayout({ children, page }) {
   };
   return (
     <>
-      <NavBar black={page === "home" ? (black ? true : false) : true} />
+      <NavBar
+        loggedIn={true}
+        black={page === "home" ? (black ? true : false) : true}
+      />
 
       <div className="min-vh-100">{children}</div>
       <Footer />

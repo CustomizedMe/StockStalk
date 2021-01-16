@@ -16,16 +16,33 @@ export default function index({ loggedIn, black }) {
         <div className="collapse navbar-collapse  ">
           <ul className="navbar-nav ms-auto me-5">
             <li className="nav-item">
-              <Link className="nav-link text-white"> Market</Link>
+              <Link to="/market" className="nav-link text-white">
+                {" "}
+                Market
+              </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link text-white"> FAQs</Link>
+              <Link to="/Faqs" className="nav-link text-white">
+                {" "}
+                FAQs
+              </Link>
             </li>
             {loggedIn ? (
-              <li className="nav-item">
-                <Link className="nav-link text-white"> Profile</Link>
-              </li>
+              <>
+                <li className="nav-item">
+                  <Link to="/profile" className="nav-link text-white">
+                    {" "}
+                    Profile
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/logout" className="nav-link text-white">
+                    {" "}
+                    Logout
+                  </Link>
+                </li>
+              </>
             ) : (
               <li className="nav-item">
                 <Link to="/enter" className="nav-link  text-white">
