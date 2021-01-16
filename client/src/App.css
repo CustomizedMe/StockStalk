@@ -16,15 +16,18 @@ body {
   margin-top: 30%;
 }
 
+.transparent {
+  background-color: #fff;
+}
 .navbar-dark1 {
   background-color: #1c2331;
 }
 .navbar .nav-link:hover {
   border-bottom: 1px solid white;
 }
-.showcase-text {
+.padTop-5 {
+  padding-top: 10%;
 }
-
 .box {
   text-align: center;
   cursor: pointer;
@@ -40,4 +43,16 @@ body {
 .icon:hover {
   transform: scaleY(1.15);
   color: steelblue;
+}
+
+.register {
+  background: url("./Assests/img/landing_page.jpg") no-repeat 0 -200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 900px;
+}
+
+.register-form .form-control {
+  border: 0 !important;
+  border-bottom: 1px solid #1c2331 !important;
 }
