@@ -1,61 +1,38 @@
-body {
-  font-family: "Poppins";
-}
-.jumbotron {
-  background: url("./Assests/img/landing_page.jpg") no-repeat 0 -200px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 900px;
-}
-.navbar {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.showcase-bg {
-  background-color: rgba(0, 0, 0, 0.6);
-  margin-top: 30%;
-}
-
-.transparent {
-  background-color: #fff;
-}
-.navbar-dark1 {
-  background-color: #1c2331;
-}
-.navbar .nav-link:hover {
-  border-bottom: 1px solid white;
-}
-.padTop-5 {
-  padding-top: 10%;
-}
-.box {
+.App {
   text-align: center;
-  cursor: pointer;
 }
 
-.dark {
-  background-color: #1c2331;
-}
-.box:hover {
-  transform: scaleY(1.05);
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.icon:hover {
-  transform: scaleY(1.15);
-  color: steelblue;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.register {
-  background: url("./Assests/img/landing_page.jpg") no-repeat 0 -200px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 900px;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.register-form .form-control {
-  border: 0 !important;
-  border-bottom: 1px solid #1c2331 !important;
+.App-link {
+  color: #61dafb;
 }
-.active {
-  border-bottom: 1px solid white !important;
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
