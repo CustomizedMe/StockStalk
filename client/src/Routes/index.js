@@ -6,7 +6,7 @@ import Profile from "../Component/Profile";
 import EditProfile from "../Component/EditProfile/";
 import Market from "../Component/Market";
 import Faqs from "../Component/Faqs";
-
+import Compare from "../Component/Compare";
 export default function AppRoute() {
   return (
     <>
@@ -16,6 +16,7 @@ export default function AppRoute() {
       <Route path="/editProfile" component={EditProfile} />
       <Route path="/market" component={Market} />
       <Route path="/faqs" component={Faqs} />
+      <Route path="/compare" component={Compare} />
     </>
   );
 }
