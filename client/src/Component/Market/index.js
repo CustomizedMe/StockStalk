@@ -1045,7 +1045,7 @@ const Market = ({ location, history }) => {
   };
   console.log(companyName, data);
   return (
-    <PageLayout page="market">
+    <PageLayout page="market" history={history}>
       <section className="market dark min-vh-100 text-light padTop-5 pb-5">
         <div className="container">
           {data && companyName ? (

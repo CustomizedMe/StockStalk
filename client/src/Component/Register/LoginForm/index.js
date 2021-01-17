@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const LoginForm = ({ toggleRegister }) => {
+const LoginForm = ({ toggleRegister, onSubmit, login, onChange, alert1 }) => {
   return (
     <div className="register-form text-white">
       <h2 className="mb-5 ">Login</h2>
-      <form className="form my-3 w-75 mx-auto">
+      {alert1 ? (
+        <div className="alert alert-warning">Some error have come up</div>
+      ) : (
+        ""
+      )}
+      <form className="form my-3 w-75 mx-auto" onSubmit={onSubmit}>
         <div className="form-group my-3">
           {/* <label className="label"> Name</label> */}
           <input
             type="text"
             className="form-control"
             placeholder="User Name..."
+            name="username"
+            onChange={onChange}
+            value={login.username}
           />
         </div>
 
@@ -21,6 +29,9 @@ const LoginForm = ({ toggleRegister }) => {
             type="password"
             className="form-control"
             placeholder="Password..."
+            name="password"
+            onChange={onChange}
+            value={login.password}
           />
         </div>
 

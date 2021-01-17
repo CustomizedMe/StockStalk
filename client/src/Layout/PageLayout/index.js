@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
-export default function PageLayout({ children, page }) {
+import { connect } from "react-redux";
+import { logoutAction } from "../../Action/AuthAction";
+function PageLayout({ children, page, loggedIn, logout, history }) {
   const [black, setBlack] = useState(page === "home" && window.scrollY <= 200);
   // const
   window.onscroll = () => {
@@ -15,9 +17,10 @@ export default function PageLayout({ children, page }) {
   return (
     <>
       <NavBar
-        loggedIn={true}
+        loggedIn={loggedIn}
         page={page}
         black={page === "home" ? (black ? true : false) : true}
+        logout={logout}
       />
 
       <div className="min-vh-100">{children}</div>
@@ -25,3 +28,11 @@ export default function PageLayout({ children, page }) {
     </>
   );
 }
+const mapDispatchToProps = {
+  logout: logoutAction,
+};
+const mapStateToProps = (state) => ({
+  loggedIn: state.loggedIn,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageLayout);

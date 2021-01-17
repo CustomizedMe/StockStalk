@@ -1,14 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RegisterForm = ({ toggleRegister }) => {
+const RegisterForm = ({
+  toggleRegister,
+  registerDetails,
+  onSubmit,
+  onChange,
+}) => {
   return (
     <div className="register-form text-white">
       <h2 className="mb-5 ">Register</h2>
-      <form className="form my-3 w-75 mx-auto">
+      <form className="form my-3 w-75 mx-auto" onSubmit={onSubmit}>
         <div className="form-group my-3">
           {/* <label className="label"> Name</label> */}
-          <input type="text" className="form-control" placeholder="Name..." />
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Name..."
+            name="name"
+            onChange={onChange}
+            value={registerDetails.name}
+          />
         </div>
         <div className="form-group my-3">
           {/* <label className="label"> Name</label> */}
@@ -16,11 +28,21 @@ const RegisterForm = ({ toggleRegister }) => {
             type="text"
             className="form-control"
             placeholder="User Name..."
+            name="username"
+            onChange={onChange}
+            value={registerDetails.username}
           />
         </div>
         <div className="form-group text my-3">
           {/* <label className="label"> Name</label> */}
-          <input type="email" className="form-control" placeholder="Email..." />
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Email..."
+            name="email"
+            onChange={onChange}
+            value={registerDetails.email}
+          />
         </div>
         <div className="form-group text- my-3">
           {/* <label className="label"> Name</label> */}
@@ -28,6 +50,9 @@ const RegisterForm = ({ toggleRegister }) => {
             type="password"
             className="form-control"
             placeholder="Password..."
+            name="password"
+            onChange={onChange}
+            value={registerDetails.password}
           />
         </div>
         <div className="form-group text- my-3">
@@ -36,6 +61,9 @@ const RegisterForm = ({ toggleRegister }) => {
             type="password"
             className="form-control"
             placeholder="Confirm Password..."
+            name="confirmpassword"
+            onChange={onChange}
+            value={registerDetails.confirmpassword}
           />
         </div>
 

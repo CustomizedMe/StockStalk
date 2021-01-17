@@ -1,11 +1,35 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { loginAction } from "../../Action/AuthAction";
 import PageLayout from "../../Layout/PageLayout";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-
-export default function Register() {
+import { registerUser } from "../../Api/AuthApi";
+function Register({ login }) {
   const [register, setRegister] = useState(true);
-
+  const [formDetails, setFormDetails] = useState({
+    username: "",
+    password: "",
+    confirmpassword: "",
+    name: "",
+    email: "",
+  });
+  const onChange = ({ target }) => {
+    setFormDetails({ ...formDetails, [target.name]: target.value });
+  };
+  const onLoginSubmit = (e) => {
+    e.preventDefault();
+    // const { username, password } = formDetails;
+    const loginData = {
+      username: formDetails.username,
+      password: formDetails.password,
+    };
+    console.log(loginData);
+    login(loginData);
+  };
+  const onRegisterSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <PageLayout page="enter">
       <section className="dark min-vh-100 pb-5 padTop-5">
@@ -13,9 +37,19 @@ export default function Register() {
           <div className="card bg-dark text-center p-4 shadow-lg w-50 m-auto">
             <div>
               {register ? (
-                <RegisterForm toggleRegister={() => setRegister(false)} />
+                <RegisterForm
+                  toggleRegister={() => setRegister(false)}
+                  onSubmit={onRegisterSubmit}
+                  registerDetails={formDetails}
+                  onChange={onChange}
+                />
               ) : (
-                <LoginForm toggleRegister={() => setRegister(true)} />
+                <LoginForm
+                  toggleRegister={() => setRegister(true)}
+                  onSubmit={onLoginSubmit}
+                  login={formDetails}
+                  onChange={onChange}
+                />
               )}
             </div>
           </div>
@@ -24,3 +58,8 @@ export default function Register() {
     </PageLayout>
   );
 }
+const mapDispatchToProps = {
+  login: loginAction,
+};
+const mapStateToProps = (state) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

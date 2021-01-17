@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-export default function index({ loggedIn, black, page }) {
+import { Link, Redirect } from "react-router-dom";
+export default function index({ loggedIn, black, page, logout, history }) {
   return (
     <nav
       className={
@@ -53,8 +53,13 @@ export default function index({ loggedIn, black, page }) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/logout" className="nav-link text-white">
-                    {" "}
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      logout();
+                    }}
+                    className=" btn nav-link text-white"
+                  >
                     Logout
                   </Link>
                 </li>
