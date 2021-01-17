@@ -1,38 +1,61 @@
-.App {
+body {
+  font-family: "Poppins";
+}
+.jumbotron {
+  background: url("./Assests/img/landing_page.jpg") no-repeat 0 -200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 900px;
+}
+.navbar {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.showcase-bg {
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-top: 30%;
+}
+
+.transparent {
+  background-color: #fff;
+}
+.navbar-dark1 {
+  background-color: #1c2331;
+}
+.navbar .nav-link:hover {
+  border-bottom: 1px solid white;
+}
+.padTop-5 {
+  padding-top: 10%;
+}
+.box {
   text-align: center;
+  cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.dark {
+  background-color: #1c2331;
+}
+.box:hover {
+  transform: scaleY(1.05);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.icon:hover {
+  transform: scaleY(1.15);
+  color: steelblue;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.register {
+  background: url("./Assests/img/landing_page.jpg") no-repeat 0 -200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 900px;
 }
 
-.App-link {
-  color: #61dafb;
+.register-form .form-control {
+  border: 0 !important;
+  border-bottom: 1px solid #1c2331 !important;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.active {
+  border-bottom: 1px solid white !important;
 }
