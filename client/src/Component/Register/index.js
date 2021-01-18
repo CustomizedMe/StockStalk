@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loginAction } from "../../Action/AuthAction";
 import PageLayout from "../../Layout/PageLayout";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import * as authApi from "../../Api/AuthApi";
+
 import { registerUser } from "../../Api/AuthApi";
-function Register({ login }) {
-  const [register, setRegister] = useState(true);
+function Register({ login, location, history }) {
   const [formDetails, setFormDetails] = useState({
     username: "",
     password: "",
@@ -14,6 +15,11 @@ function Register({ login }) {
     name: "",
     email: "",
   });
+  const params = location.pathname.split("/")[2];
+  if (!params) {
+    history.push("/enter/login");
+  }
+  const register = params !== "login";
   const onChange = ({ target }) => {
     setFormDetails({ ...formDetails, [target.name]: target.value });
   };
@@ -24,8 +30,17 @@ function Register({ login }) {
       username: formDetails.username,
       password: formDetails.password,
     };
-    console.log(loginData);
-    login(loginData);
+    authApi
+      .loginUser(loginData)
+      .then((data) => {
+        console.log(data);
+        login(data);
+        history.push("/market");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("some error");
+      });
   };
   const onRegisterSubmit = (e) => {
     e.preventDefault();
@@ -38,14 +53,14 @@ function Register({ login }) {
             <div>
               {register ? (
                 <RegisterForm
-                  toggleRegister={() => setRegister(false)}
+                  // toggleRegister={() => {history.push}}
                   onSubmit={onRegisterSubmit}
                   registerDetails={formDetails}
                   onChange={onChange}
                 />
               ) : (
                 <LoginForm
-                  toggleRegister={() => setRegister(true)}
+                  // toggleRegister={() => setRegister(true)}
                   onSubmit={onLoginSubmit}
                   login={formDetails}
                   onChange={onChange}

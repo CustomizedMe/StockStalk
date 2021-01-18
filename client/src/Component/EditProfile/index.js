@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import PageLayout from "../../Layout/PageLayout";
 import ProfileForm from "./ProfileForm";
-const EditProfile = (props) => {
+const EditProfile = ({ history }) => {
   const initial_profile = {
     name: "Prakhar",
     username: "prakhar194",
@@ -24,6 +24,7 @@ const EditProfile = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(profile);
+    history.push("/profile");
   };
   return (
     <PageLayout page="profile">

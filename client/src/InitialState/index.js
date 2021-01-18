@@ -1,5 +1,8 @@
 const initialState = {
-  loggedIn: localStorage.getItem("token"),
+  loggedIn: {
+    token: localStorage.getItem("token"),
+    username: localStorage.getItem("username"),
+  },
 };
 
 export default initialState;

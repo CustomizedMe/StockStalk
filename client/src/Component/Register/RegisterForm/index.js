@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const RegisterForm = ({
   toggleRegister,
@@ -76,12 +77,13 @@ const RegisterForm = ({
 
       <p>
         Already have an account ?
-        <button
-          onClick={toggleRegister}
+        <Link
+          to="/enter/login"
+          // onClick={toggleRegister}
           className=" btn btn-link text-primary text-decoration-none fw-bold"
         >
           Sign In
-        </button>
+        </Link>
       </p>
     </div>
   );

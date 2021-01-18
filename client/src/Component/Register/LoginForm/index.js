@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ toggleRegister, onSubmit, login, onChange, alert1 }) => {
   return (
@@ -18,6 +19,7 @@ const LoginForm = ({ toggleRegister, onSubmit, login, onChange, alert1 }) => {
             className="form-control"
             placeholder="User Name..."
             name="username"
+            required
             onChange={onChange}
             value={login.username}
           />
@@ -30,6 +32,7 @@ const LoginForm = ({ toggleRegister, onSubmit, login, onChange, alert1 }) => {
             className="form-control"
             placeholder="Password..."
             name="password"
+            required
             onChange={onChange}
             value={login.password}
           />
@@ -44,12 +47,13 @@ const LoginForm = ({ toggleRegister, onSubmit, login, onChange, alert1 }) => {
 
       <p>
         Don't have an account ?
-        <button
-          onClick={toggleRegister}
+        <Link
+          to="/enter/register"
+          // onClick={toggleRegister}
           className=" btn btn-link text-primary text-decoration-none fw-bold"
         >
           Register
-        </button>
+        </Link>
       </p>
     </div>
   );
