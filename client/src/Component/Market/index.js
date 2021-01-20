@@ -3,279 +3,16 @@ import PropTypes from "prop-types";
 import PageLayout from "../../Layout/PageLayout";
 import MarketForm from "./MarketForm";
 import CompanyPage from "./CompanyPage";
+import * as MarketApi from "../../Api/MarketApi";
+import { Redirect } from "react-router-dom";
+
 const initialData = {
-  "01. symbol": "BSE:RELIANCE",
-  "02. open": "1960.0000",
-  "03. high": "1973.1500",
-  "04. low": "1920.1500",
-  "05. price": "1937.6000",
-  "06. volume": "1266407",
-  "07. latest trading day": "2021-01-15",
-  "08. previous close": "1960.6000",
-  "09. change": "-23.0000",
-  "10. change percent": "-1.1731%",
+  "Global Quote": {
+    Data: "Not found or loading",
+  },
 };
-const chartData = {
-  "2021-01-15": {
-    "1. open": "1960.0",
-    "2. high": "1973.15",
-    "3. low": "1920.15",
-    "4. close": "1937.6",
-    "5. adjusted close": "1937.6",
-    "6. volume": "1266407",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-14": {
-    "1. open": "1939.1",
-    "2. high": "1966.5",
-    "3. low": "1936.05",
-    "4. close": "1960.6",
-    "5. adjusted close": "1960.6",
-    "6. volume": "1829840",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-13": {
-    "1. open": "1964.8",
-    "2. high": "1974.95",
-    "3. low": "1918.65",
-    "4. close": "1939.1",
-    "5. adjusted close": "1939.1",
-    "6. volume": "474934",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-12": {
-    "1. open": "1910.0",
-    "2. high": "1960.0",
-    "3. low": "1900.0",
-    "4. close": "1956.65",
-    "5. adjusted close": "1956.65",
-    "6. volume": "497793",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-11": {
-    "1. open": "1935.0",
-    "2. high": "1938.9",
-    "3. low": "1892.25",
-    "4. close": "1897.0",
-    "5. adjusted close": "1897.0",
-    "6. volume": "415573",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-08": {
-    "1. open": "1920.9",
-    "2. high": "1938.2",
-    "3. low": "1912.7",
-    "4. close": "1933.05",
-    "5. adjusted close": "1933.05",
-    "6. volume": "299804",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-07": {
-    "1. open": "1921.9",
-    "2. high": "1945.2",
-    "3. low": "1905.65",
-    "4. close": "1911.0",
-    "5. adjusted close": "1911.0",
-    "6. volume": "564975",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-06": {
-    "1. open": "1968.0",
-    "2. high": "1968.0",
-    "3. low": "1905.0",
-    "4. close": "1914.15",
-    "5. adjusted close": "1914.15",
-    "6. volume": "864039",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-05": {
-    "1. open": "1972.05",
-    "2. high": "1984.0",
-    "3. low": "1956.0",
-    "4. close": "1966.0",
-    "5. adjusted close": "1966.0",
-    "6. volume": "338549",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-04": {
-    "1. open": "1988.55",
-    "2. high": "1997.9",
-    "3. low": "1967.9",
-    "4. close": "1990.65",
-    "5. adjusted close": "1990.65",
-    "6. volume": "345853",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2021-01-01": {
-    "1. open": "1986.15",
-    "2. high": "1997.3",
-    "3. low": "1982.3",
-    "4. close": "1987.15",
-    "5. adjusted close": "1987.15",
-    "6. volume": "157713",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-31": {
-    "1. open": "1994.75",
-    "2. high": "2011.0",
-    "3. low": "1980.0",
-    "4. close": "1984.65",
-    "5. adjusted close": "1984.65",
-    "6. volume": "465795",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-30": {
-    "1. open": "1992.55",
-    "2. high": "2006.85",
-    "3. low": "1975.9",
-    "4. close": "1995.5",
-    "5. adjusted close": "1995.5",
-    "6. volume": "224277",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-29": {
-    "1. open": "2007.35",
-    "2. high": "2012.8",
-    "3. low": "1982.6",
-    "4. close": "1989.2",
-    "5. adjusted close": "1989.2",
-    "6. volume": "250017",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-28": {
-    "1. open": "2004.1",
-    "2. high": "2024.9",
-    "3. low": "1995.6",
-    "4. close": "2003.25",
-    "5. adjusted close": "2003.25",
-    "6. volume": "335518",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-24": {
-    "1. open": "1950.8",
-    "2. high": "1998.65",
-    "3. low": "1947.05",
-    "4. close": "1993.9",
-    "5. adjusted close": "1993.9",
-    "6. volume": "289379",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-23": {
-    "1. open": "1932.8",
-    "2. high": "1951.2",
-    "3. low": "1920.0",
-    "4. close": "1943.8",
-    "5. adjusted close": "1943.8",
-    "6. volume": "299743",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-22": {
-    "1. open": "1940.0",
-    "2. high": "1958.4",
-    "3. low": "1887.75",
-    "4. close": "1936.6",
-    "5. adjusted close": "1936.6",
-    "6. volume": "972241",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-21": {
-    "1. open": "2010.0",
-    "2. high": "2022.0",
-    "3. low": "1856.05",
-    "4. close": "1939.75",
-    "5. adjusted close": "1939.75",
-    "6. volume": "1499610",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-18": {
-    "1. open": "1983.0",
-    "2. high": "2005.0",
-    "3. low": "1965.0",
-    "4. close": "1992.25",
-    "5. adjusted close": "1992.25",
-    "6. volume": "218330",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-17": {
-    "1. open": "1980.9",
-    "2. high": "2005.0",
-    "3. low": "1977.1",
-    "4. close": "1985.05",
-    "5. adjusted close": "1985.05",
-    "6. volume": "238834",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-16": {
-    "1. open": "1988.0",
-    "2. high": "1995.0",
-    "3. low": "1965.75",
-    "4. close": "1976.05",
-    "5. adjusted close": "1976.05",
-    "6. volume": "272748",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-15": {
-    "1. open": "1992.9",
-    "2. high": "1992.9",
-    "3. low": "1961.5",
-    "4. close": "1974.0",
-    "5. adjusted close": "1974.0",
-    "6. volume": "211535",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-14": {
-    "1. open": "2013.0",
-    "2. high": "2015.25",
-    "3. low": "1987.05",
-    "4. close": "1991.15",
-    "5. adjusted close": "1991.15",
-    "6. volume": "232903",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-11": {
-    "1. open": "2011.2",
-    "2. high": "2037.8",
-    "3. low": "1974.4",
-    "4. close": "2005.6",
-    "5. adjusted close": "2005.6",
-    "6. volume": "689028",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-12-10": {
-    "1. open": "2020.0",
-    "2. high": "2028.4",
-    "3. low": "2000.95",
-    "4. close": "2007.2",
-    "5. adjusted close": "2007.2",
-    "6. volume": "270177",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
+const initial_comment = [];
+const initialChartData = {
   "2020-12-09": {
     "1. open": "2013.0",
     "2. high": "2033.8",
@@ -726,246 +463,6 @@ const chartData = {
     "7. dividend amount": "0.0000",
     "8. split coefficient": "1.0",
   },
-  "2020-10-05": {
-    "1. open": "2246.0",
-    "2. high": "2249.0",
-    "3. low": "2205.5",
-    "4. close": "2211.1499",
-    "5. adjusted close": "2211.1499",
-    "6. volume": "393079",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-10-01": {
-    "1. open": "2264.0",
-    "2. high": "2264.0",
-    "3. low": "2213.8501",
-    "4. close": "2225.05",
-    "5. adjusted close": "2225.05",
-    "6. volume": "285180",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-30": {
-    "1. open": "2264.8",
-    "2. high": "2267.55",
-    "3. low": "2225.1001",
-    "4. close": "2233.75",
-    "5. adjusted close": "2233.75",
-    "6. volume": "1560690",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-29": {
-    "1. open": "2222.0",
-    "2. high": "2264.0",
-    "3. low": "2217.1499",
-    "4. close": "2244.8501",
-    "5. adjusted close": "2244.8501",
-    "6. volume": "325287",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-28": {
-    "1. open": "2229.0",
-    "2. high": "2238.7",
-    "3. low": "2207.25",
-    "4. close": "2215.75",
-    "5. adjusted close": "2215.75",
-    "6. volume": "516453",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-25": {
-    "1. open": "2196.0",
-    "2. high": "2212.6001",
-    "3. low": "2168.6001",
-    "4. close": "2201.7",
-    "5. adjusted close": "2201.7",
-    "6. volume": "413085",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-24": {
-    "1. open": "2210.0",
-    "2. high": "2226.0",
-    "3. low": "2175.6499",
-    "4. close": "2181.1499",
-    "5. adjusted close": "2181.1499",
-    "6. volume": "439081",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-23": {
-    "1. open": "2275.0",
-    "2. high": "2276.5",
-    "3. low": "2206.15",
-    "4. close": "2229.55",
-    "5. adjusted close": "2229.55",
-    "6. volume": "774144",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-22": {
-    "1. open": "2287.0",
-    "2. high": "2287.0",
-    "3. low": "2201.35",
-    "4. close": "2211.15",
-    "5. adjusted close": "2211.15",
-    "6. volume": "693332",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-21": {
-    "1. open": "2305.0",
-    "2. high": "2336.55",
-    "3. low": "2248.0",
-    "4. close": "2255.15",
-    "5. adjusted close": "2255.15",
-    "6. volume": "501009",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-18": {
-    "1. open": "2315.8",
-    "2. high": "2319.6001",
-    "3. low": "2277.05",
-    "4. close": "2305.5",
-    "5. adjusted close": "2305.5",
-    "6. volume": "518389",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-17": {
-    "1. open": "2319.0",
-    "2. high": "2334.3999",
-    "3. low": "2293.0",
-    "4. close": "2299.3501",
-    "5. adjusted close": "2299.3501",
-    "6. volume": "421866",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-16": {
-    "1. open": "2323.7",
-    "2. high": "2368.8",
-    "3. low": "2311.75",
-    "4. close": "2323.8501",
-    "5. adjusted close": "2323.8501",
-    "6. volume": "653164",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-15": {
-    "1. open": "2315.0",
-    "2. high": "2326.5",
-    "3. low": "2288.2",
-    "4. close": "2317.8999",
-    "5. adjusted close": "2317.8999",
-    "6. volume": "509141",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-14": {
-    "1. open": "2319.75",
-    "2. high": "2360.0",
-    "3. low": "2281.95",
-    "4. close": "2302.3501",
-    "5. adjusted close": "2302.3501",
-    "6. volume": "619976",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-11": {
-    "1. open": "2314.6499",
-    "2. high": "2337.0",
-    "3. low": "2286.05",
-    "4. close": "2318.8501",
-    "5. adjusted close": "2318.8501",
-    "6. volume": "1330635",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-10": {
-    "1. open": "2185.0",
-    "2. high": "2343.8999",
-    "3. low": "2176.1499",
-    "4. close": "2314.6499",
-    "5. adjusted close": "2314.6499",
-    "6. volume": "2449702",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-09": {
-    "1. open": "2085.0",
-    "2. high": "2167.2",
-    "3. low": "2085.0",
-    "4. close": "2161.25",
-    "5. adjusted close": "2161.25",
-    "6. volume": "850676",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-08": {
-    "1. open": "2093.8",
-    "2. high": "2120.0",
-    "3. low": "2080.8999",
-    "4. close": "2107.05",
-    "5. adjusted close": "2107.05",
-    "6. volume": "481632",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-07": {
-    "1. open": "2080.2",
-    "2. high": "2105.0",
-    "3. low": "2045.35",
-    "4. close": "2082.3999",
-    "5. adjusted close": "2082.3999",
-    "6. volume": "625358",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-04": {
-    "1. open": "2065.6001",
-    "2. high": "2097.0",
-    "3. low": "2065.6001",
-    "4. close": "2077.3999",
-    "5. adjusted close": "2077.3999",
-    "6. volume": "461018",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-03": {
-    "1. open": "2128.0",
-    "2. high": "2137.0",
-    "3. low": "2103.2",
-    "4. close": "2112.1499",
-    "5. adjusted close": "2112.1499",
-    "6. volume": "274998",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-02": {
-    "1. open": "2095.0",
-    "2. high": "2137.0",
-    "3. low": "2085.5",
-    "4. close": "2128.6001",
-    "5. adjusted close": "2128.6001",
-    "6. volume": "1979773",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
-  "2020-09-01": {
-    "1. open": "2095.0",
-    "2. high": "2121.75",
-    "3. low": "2063.45",
-    "4. close": "2087.55",
-    "5. adjusted close": "2087.55",
-    "6. volume": "542387",
-    "7. dividend amount": "0.0000",
-    "8. split coefficient": "1.0",
-  },
   "2020-08-31": {
     "1. open": "2172.0",
     "2. high": "2172.0",
@@ -1023,25 +520,91 @@ const Market = ({ location, history }) => {
   const pathName = location.pathname;
   const companyName = pathName.split("/")[2];
   const [data, setData] = useState(initialData);
+  // const [Comment, setComment] = useState([]);
+  const [chartData, setChartData] = useState(initialChartData);
+  const [currentStatus, setCurrentStatus] = useState("daily");
+  const [CommentData, setCommentData] = useState(initial_comment);
+
   useEffect(() => {
     if (companyName) {
-      //fetch details of company
-      // if found then great
-      // setData("pranav");
-      //else
-      //redirect to /market
-      // history.push("/market");
+      fetchMetaData();
+      fetchCommentData();
     }
-  });
+  }, [companyName]);
+
+  useEffect(() => {
+    if (companyName) {
+      fetchChartData();
+    }
+  }, [companyName, currentStatus]);
+
+  const fetchChartData = () => {
+    MarketApi.companyChart(companyName, currentStatus)
+      .then((data) => {
+        const keys = Object.keys(data);
+        const report = data[keys[1]];
+        setChartData(report);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  const fetchMetaData = () => {
+    MarketApi.companyInfo(companyName)
+      .then((data) => {
+        console.log("data here");
+        console.log(data);
+        if (data["Global Quote"]) {
+          setData(data);
+        } else {
+        }
+      })
+      .catch((err) => {
+        // console.log(err.response);
+
+        alert(err.response.data.msg || "Server error");
+        // setTimeout(() => history.push("/market"), 2000);
+      });
+  };
+  const fetchCommentData = () => {
+    MarketApi.companyComments(companyName).then((data) => {
+      setCommentData(data);
+      console.log("data here");
+      console.log(data);
+    });
+  };
+  //   useEffect(() => {
+  //     if (companyName) {
+  //       MarketApi.companyInfo(companyName).then((data) => {
+  //         console.log("data here");
+  //         console.log(data);
+  //         if (data) {
+  //           setData(data);
+  //         } else {
+
+  //         }
+  //       //fetch details of company
+  //       // if found then great
+  //       //setData(data);
+  //       //else
+  //       //redirect to /market
+  //       //history.push("/market");
+  //     })
+  //   }
+  // },[companyName]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     history.push(`/market/${company}`);
   };
 
   const onChange = ({ target }) => {
-    setCompany(target.value);
+    setCompany(target.value.toUpperCase());
+  };
+
+  const onChangeCurrentStatus = (value) => {
+    setCurrentStatus(value);
   };
   console.log(companyName, data);
   return (
@@ -1049,7 +612,13 @@ const Market = ({ location, history }) => {
       <section className="market dark min-vh-100 text-light padTop-5 pb-5">
         <div className="container">
           {data && companyName ? (
-            <CompanyPage data={data} chartData={chartData} />
+            <CompanyPage
+              comments={CommentData}
+              data={data}
+              chartData={chartData}
+              status={currentStatus}
+              onChangeStatus={onChangeCurrentStatus}
+            />
           ) : (
             <MarketForm
               onChange={onChange}

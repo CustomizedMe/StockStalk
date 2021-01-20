@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ProfileForm = ({ profile, onChange, onSubmit }) => {
+  console.log("object");
+  console.log(profile);
   return (
     <div className="card bg-dark text-white px-4">
       <div className="card-header py-3 text-center">
@@ -20,7 +22,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   className="form-control"
                   placeholder="username..."
                   onChange={onChange}
-                  value={profile.username}
+                  value={profile.user.username}
                 />
               </div>
             </div>
@@ -34,7 +36,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   onChange={onChange}
                   className="form-control"
                   placeholder="Name..."
-                  value={profile.name}
+                  value={profile.user.name}
                 />
               </div>
             </div>
@@ -42,7 +44,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
               <div className="form-group">
                 <label>Gender</label>
                 <select
-                  disabled
+                  //disabled
                   type="text"
                   name="gender"
                   onChange={onChange}
@@ -123,10 +125,21 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                 <input
                   type="text"
                   name="facebook"
-                  onChange={onChange}
-                  value={profile.facebook}
+                  //value={profile.social.facebook || ""}
+                  onChange={({ target }) =>
+                    onChange({
+                      target: {
+                        name: "social",
+                        value: {
+                          ...profile.social,
+                          [target.name]: target.value,
+                        },
+                      },
+                    })
+                  }
                   className="form-control"
                   placeholder="Facebook Url"
+                  //value={profile.social.facebook}
                 />
               </div>
             </div>
@@ -136,10 +149,20 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                 <input
                   type="text"
                   name="twitter"
-                  onChange={onChange}
-                  value={profile.twitter}
+                  onChange={({ target }) =>
+                    onChange({
+                      target: {
+                        name: "social",
+                        value: {
+                          ...profile.social,
+                          [target.name]: target.value,
+                        },
+                      },
+                    })
+                  }
                   className="form-control"
                   placeholder="Twitter Url"
+                  //value={profile.social.twitter || " "}
                 />
               </div>
             </div>
@@ -149,10 +172,20 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                 <input
                   type="text"
                   name="linkedin"
-                  onChange={onChange}
-                  value={profile.linkedin}
+                  onChange={({ target }) =>
+                    onChange({
+                      target: {
+                        name: "social",
+                        value: {
+                          ...profile.social,
+                          [target.name]: target.value,
+                        },
+                      },
+                    })
+                  }
                   className="form-control"
                   placeholder="LinkedIn Url"
+                  //value={profile.social.linkedin || ""}
                 />
               </div>
             </div>

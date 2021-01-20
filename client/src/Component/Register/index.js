@@ -5,8 +5,8 @@ import PageLayout from "../../Layout/PageLayout";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import * as authApi from "../../Api/AuthApi";
-
 import { registerUser } from "../../Api/AuthApi";
+
 function Register({ login, location, history }) {
   const [formDetails, setFormDetails] = useState({
     username: "",

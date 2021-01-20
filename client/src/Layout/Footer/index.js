@@ -13,16 +13,16 @@ export default function index() {
           <div className="col-8 text-center navbar-dark">
             <div className="ms-auto">
               <p className="font-monotone fs-5">Connect with us on</p>
-              <Link className="text-white">
+              <Link to="#" className="text-white">
                 <i className="icon fab fa-facebook fa-2x mx-3 my-auto"></i>
               </Link>
-              <Link className="text-white">
+              <Link to="#" className="text-white">
                 <i className="icon fab fa-twitter fa-2x mx-3 my-auto"></i>
               </Link>
-              <Link className="text-white">
+              <Link to="#" className="text-white">
                 <i className="icon fab fa-linkedin fa-2x mx-3 my-auto"></i>
               </Link>
-              <Link className="text-white">
+              <Link to="#" className="text-white">
                 <i className="icon fab fa-github fa-2x mx-3 my-auto"></i>
               </Link>
             </div>

@@ -25,13 +25,22 @@ const AboutCard = ({ profile, isMyProfile }) => {
         <p className="py-3">{profile.about || ""}</p>
 
         <div className=" w-50  mx-auto d-flex justify-content-around">
-          <a href={profile.social.twitter} className="text-white icon ">
+          <a
+            href={(profile.social || { twitter: "" }).twitter}
+            className="text-white icon "
+          >
             <i className=" text-white fab fa-twitter fa-2x"></i>
           </a>
-          <a href={profile.social.facebook} className="text-white icon ">
+          <a
+            href={(profile.social || { facebook: "" }).facebook}
+            className="text-white icon "
+          >
             <i className=" fab fa-facebook fa-2x"></i>
           </a>
-          <a href={profile.social.linkedin} className="text-white icon ">
+          <a
+            href={(profile.social || { linkedin: "" }).linkedin}
+            className="text-white icon "
+          >
             <i className="fab fa-linkedin fa-2x"></i>
           </a>
         </div>

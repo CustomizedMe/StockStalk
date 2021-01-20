@@ -2,28 +2,41 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import PageLayout from "../../Layout/PageLayout";
 import * as ProfileApi from "../../Api/ProfileApi";
+import * as CommentApi from "../../Api/CommentApi";
+
 import AboutCard from "./AboutCard";
 import PostsCard from "./PostsCard";
 import { connect } from "react-redux";
 
 const Profile = ({ props, username, location }) => {
   const currentUsername = location.pathname.split("/")[2] || username;
+  //console.log(currentUsername, username);
+  const initial_post = [];
+  const [isMyProfile, setIsMyProfile] = useState(username === currentUsername);
 
-  const posts = [
-    // "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum velit vel nemo deleniti magnam ut delectus nisi mollitia pariatur, odit,commodi cumque nam? Possimus vero eius, corrupti voluptates magnam totam.",
-    // ,
-    // "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum velit vel nemo deleniti magnam ut delectus nisi mollitia pariatur, odit,commodi cumque nam? Possimus vero eius, corrupti voluptates magnam totam.",
-  ];
-  console.log(currentUsername, username);
-  const [isMyProfile, setIsMyProfile] = useState(username == currentUsername);
   const [profile, setProfile] = useState({});
+
+  const [posts, setPost] = useState(initial_post);
 
   useEffect(() => {
     ProfileApi.getProfile(currentUsername).then((data) => {
       setProfile(data);
+      console.log("profile here");
       setIsMyProfile(username === currentUsername);
     });
+  }, [currentUsername, username]);
+
+  useEffect(() => {
+    CommentApi.userComments(currentUsername).then((data) => {
+      setPost(data);
+      // console.log("comments here");
+      console.log(data);
+      // console.log(posts);
+    });
   }, [currentUsername]);
+
+  console.log("posts here");
+  console.log(posts);
 
   return (
     <PageLayout page="profile">

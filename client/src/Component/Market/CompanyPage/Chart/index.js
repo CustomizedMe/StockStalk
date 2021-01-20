@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
-const SChart = ({ data, timePeriod }) => {
+const SChart = ({ data, status, onChangeStatus }) => {
   const times = Object.keys(data);
   const plotData = times.map((time) => {
     const value = data[time];
@@ -38,20 +38,34 @@ const SChart = ({ data, timePeriod }) => {
         <ul class="nav nav-pills row ">
           <li className="nav-item col-4">
             <button
-              className="nav-link w-100  btn-dark"
-              aria-current="page"
-              href="#"
+              className={
+                "nav-link w-100 " +
+                (status == "daily" ? " btn-dark" : "btn-outline-dark")
+              }
+              onClick={() => onChangeStatus("daily")}
             >
               Daily
             </button>
           </li>
           <li className="nav-item col-4">
-            <button className="nav-link w-100 btn-outline-dark" href="#">
+            <button
+              className={
+                "nav-link w-100 " +
+                (status == "monthly" ? " btn-dark" : "btn-outline-dark")
+              }
+              onClick={() => onChangeStatus("monthly")}
+            >
               Monthly
             </button>
           </li>
           <li className="nav-item col-4 ">
-            <button className="nav-link w-100 btn-outline-dark" href="#">
+            <button
+              className={
+                "nav-link w-100 " +
+                (status == "weekly" ? " btn-dark" : "btn-outline-dark")
+              }
+              onClick={() => onChangeStatus("weekly")}
+            >
               Weekly
             </button>
           </li>

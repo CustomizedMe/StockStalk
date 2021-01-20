@@ -1,6 +1,15 @@
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
-export default function index({ loggedIn, black, page, logout, history }) {
+import React, { useState } from "react";
+import { Link, Redirect, useHistory } from "react-router-dom";
+export default function NavBar({ loggedIn, black, page, logout }) {
+  // console.log(loggedIn)
+  const [search, setSearch] = useState("");
+  let history = useHistory();
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    history.push("/market/" + search);
+    setSearch("");
+  };
   return (
     <nav
       className={
@@ -38,7 +47,7 @@ export default function index({ loggedIn, black, page, logout, history }) {
                 FAQs
               </Link>
             </li>
-            {loggedIn ? (
+            {loggedIn.token ? (
               <>
                 <li className="nav-item">
                   <Link
@@ -77,12 +86,14 @@ export default function index({ loggedIn, black, page, logout, history }) {
               </li>
             )}
           </ul>
-          <form className="d-flex">
+          <form className="d-flex" onSubmit={onSubmit}>
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              value={search}
+              onChange={({ target }) => setSearch(target.value.toUpperCase())}
             />
             <button
               className="btn btn-outline-light fas fa-search fa-1x"
