@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 const MarketForm = ({ onSubmit, company, onChange }) => {
   return (
-    <div className=" mx-auto mt-5  py-5 w-50">
-      <h1 className="mt-5 pt-5">Search for the company</h1>
+    <div className=" mx-auto mt-1  py-1 w-50">
+      <h2 className="mt-5 pt-5 text-justify">Search for the company</h2>
       <form className="form my-4" onSubmit={onSubmit}>
         <div>
           <input

@@ -28,6 +28,7 @@
     "express-validator": "^6.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.8",
+    "newsapi": "^2.4.1",
     "request": "^2.88.2",
     "scripts": "^0.1.0"
   },

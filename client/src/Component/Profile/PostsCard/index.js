@@ -4,7 +4,7 @@ import PostCard from "../Post";
 import CommentCard from "../../../Layout/CommentCard";
 
 const PostsCard = ({ posts = [] }) => {
-  console.log("on comment card");
+  console.log("posts sent like this");
   console.log(posts);
   return (
     <>

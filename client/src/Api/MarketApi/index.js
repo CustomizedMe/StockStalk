@@ -17,3 +17,8 @@ export function companyChart(company, duration) {
   const url = BASE_URL + `data/${company}/${duration} `;
   return Axios.get(url).then((data) => data.data);
 }
+export function newsFeed() {
+  const url =
+    "http://newsapi.org/v2/top-headlines?country=in&apiKey=fcf2844727134ba8a3ba4513467e6e1c";
+  return Axios.get(url).then((data) => data.data);
+}

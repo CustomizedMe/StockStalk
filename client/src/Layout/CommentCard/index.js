@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const CommentCard = ({ comment = {}, flag }) => {
   console.log(comment);
-  // eslint-disable-next-line no-array-constructor
   const month = [];
   month[0] = "Jan";
   month[1] = "Feb";

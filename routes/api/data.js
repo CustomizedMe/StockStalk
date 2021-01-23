@@ -83,8 +83,24 @@ router.get("/:symbol/:duration", (req, res) => {
   }
 });
 
-//@route GET api/data/news
-//@desc Get company timeseries data
-//@access Public
+// // @route    GET api/data/news
+// // @desc     Get news
+// // @access   Public
+// router.get("/news", async (req, res) => {
+//   try {
+//     const uri = encodeURI(
+//       `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsApi}`
+//     );
+//     const headers = {
+//       "user-agent": "node.js",
+//       Authorization: `token ${config.get("githubToken")}`,
+//     };
 
+//     const gitHubResponse = await axios.get(uri, { headers });
+//     return res.json(gitHubResponse.data);
+//   } catch (err) {
+//     console.error(err.message);
+//     return res.status(404).json({ msg: "No Github profile found" });
+//   }
+// });
 module.exports = router;

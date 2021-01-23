@@ -40,7 +40,7 @@ const SChart = ({ data, status, onChangeStatus }) => {
             <button
               className={
                 "nav-link w-100 " +
-                (status == "daily" ? " btn-dark" : "btn-outline-dark")
+                (status === "daily" ? " btn-dark" : "btn-outline-dark")
               }
               onClick={() => onChangeStatus("daily")}
             >
@@ -51,7 +51,7 @@ const SChart = ({ data, status, onChangeStatus }) => {
             <button
               className={
                 "nav-link w-100 " +
-                (status == "monthly" ? " btn-dark" : "btn-outline-dark")
+                (status === "monthly" ? " btn-dark" : "btn-outline-dark")
               }
               onClick={() => onChangeStatus("monthly")}
             >
@@ -62,7 +62,7 @@ const SChart = ({ data, status, onChangeStatus }) => {
             <button
               className={
                 "nav-link w-100 " +
-                (status == "weekly" ? " btn-dark" : "btn-outline-dark")
+                (status === "weekly" ? " btn-dark" : "btn-outline-dark")
               }
               onClick={() => onChangeStatus("weekly")}
             >
