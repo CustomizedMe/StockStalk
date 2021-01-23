@@ -2,7 +2,7 @@ import React from "react";
 import CommentCard from "../../../../Layout/CommentCard";
 
 const Comments = ({ comments }) => {
-  console.log(comments, "Prakhar coming here");
+  //console.log(comments, "Prakhar coming here");
   return (
     <div className="card text-dark my-5">
       <div className="card-header">

@@ -12,6 +12,9 @@ const CompanyPage = ({
   onChangeStatus,
   comments,
   symbol,
+  onChange,
+  onSubmitForm,
+  CommentData,
 }) => {
   return (
     <div className="text-white">
@@ -28,7 +31,12 @@ const CompanyPage = ({
         </div>
       </div>
       <div className="align-middle">
-        <CommentForm symbol={symbol} />
+        <CommentForm
+          symbol={symbol}
+          onChange={onChange}
+          onSubmit={onSubmitForm}
+          CommentData={CommentData}
+        />
       </div>
       <div>
         <Comments comments={comments} />

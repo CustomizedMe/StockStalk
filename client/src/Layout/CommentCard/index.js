@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const CommentCard = ({ comment = {}, flag }) => {
-  console.log(comment);
+  //console.log(comment);
   const month = [];
   month[0] = "Jan";
   month[1] = "Feb";

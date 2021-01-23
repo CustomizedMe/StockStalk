@@ -4,8 +4,10 @@ import PageLayout from "../../Layout/PageLayout";
 import MarketForm from "./MarketForm";
 import CompanyPage from "./CompanyPage";
 import * as MarketApi from "../../Api/MarketApi";
+import * as CommentApi from "../../Api/CommentApi";
 import { Redirect } from "react-router-dom";
 import NewsCard from "./NewsCard";
+import CommentForm from "./CompanyPage/CommentForm";
 
 //Initial States for GET APIs
 const initial_News = [];
@@ -27,7 +29,10 @@ const Market = ({ location, history }) => {
   const [currentStatus, setCurrentStatus] = useState("daily");
   const [CommentData, setCommentData] = useState(initial_comment);
   const [NewsData, setNewsData] = useState(initial_News);
-
+  const [CommentDataForm, setCommentDataForm] = useState({
+    text: "",
+    symbol: companyName,
+  });
   useEffect(() => {
     MarketApi.newsFeed().then((data) => {
       console.log("news here");
@@ -96,7 +101,18 @@ const Market = ({ location, history }) => {
   const onChangeCurrentStatus = (value) => {
     setCurrentStatus(value);
   };
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    setCommentDataForm({ ...CommentDataForm, text: "" });
+    CommentApi.addComment(CommentDataForm).then((data) => {
+      console.log(data);
+      setCommentData([data, ...CommentData]);
+    });
+  };
 
+  const onChangeCompanyForm = ({ target }) => {
+    setCommentDataForm({ ...CommentDataForm, [target.name]: target.value });
+  };
   console.log(companyName, data);
   return (
     <PageLayout page="market" history={history}>
@@ -110,6 +126,9 @@ const Market = ({ location, history }) => {
               status={currentStatus}
               onChangeStatus={onChangeCurrentStatus}
               symbol={companyName}
+              onChange={onChangeCompanyForm}
+              onSubmitForm={onSubmitForm}
+              CommentData={CommentDataForm}
             />
           ) : (
             <Fragment>
