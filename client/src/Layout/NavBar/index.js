@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 export default function NavBar({ loggedIn, black, page, logout }) {
-  // console.log(loggedIn)
   const [search, setSearch] = useState("");
   let history = useHistory();
   const onSubmit = (e) => {

@@ -79,7 +79,7 @@ router.post(
       return res.json(profile);
     } catch (err) {
       console.error(err.message);
-      return res.status(500).send('Server Error');
+      return res.status(500).send("Server Error");
     }
   }
 );
@@ -155,6 +155,7 @@ router.post(
     }
   }
 );
+
 // @route Get api/user/comment/all
 // @desc get all comments
 // @access Private

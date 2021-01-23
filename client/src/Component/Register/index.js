@@ -45,6 +45,7 @@ function Register({ login, location, history }) {
   const onRegisterSubmit = (e) => {
     e.preventDefault();
   };
+
   return (
     <PageLayout page="enter">
       <section className="dark min-vh-100 pb-5 padTop-5">

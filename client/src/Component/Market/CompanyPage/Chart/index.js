@@ -19,10 +19,10 @@ const SChart = ({ data, status, onChangeStatus }) => {
       type: "candlestick",
       height: 350,
     },
-    title: {
+    /*title: {
       text: "CandleStick Chart",
       align: "left",
-    },
+    },*/
     xaxis: {
       type: "datetime",
     },

@@ -17,7 +17,6 @@ const CommentCard = ({ comment = {}, flag }) => {
   month[9] = "Oct";
   month[10] = "Nov";
   month[11] = "Dec";
-  //return <div className="mt-5 center">Comments will be here</div>;
   const light = " card bg-light text-dark mt-2";
   const dark = " card bg-dark text-white mt-2";
   comment.date = comment.date || new Date();
@@ -45,12 +44,6 @@ const CommentCard = ({ comment = {}, flag }) => {
             </div>
           </div>
           <p>{comment.text}</p>
-          {/* <small>
-            <div href="/#/">Show Comments</div>
-          </small>
-          <div style={{ marginLeft: "10px" }}>
-            <small>comment on comment</small>
-          </div> */}
         </div>
       </div>
     </div>
