@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+<<<<<<< HEAD
+=======
+//require("dotenv").config();
+>>>>>>> 3f8aaba59c3e9708e7caac83d22b12cb63a98798
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
@@ -128,7 +132,7 @@ router.post(
         },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ token, username });
         }
       );
     } catch (err) {

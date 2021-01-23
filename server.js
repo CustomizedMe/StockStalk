@@ -21,4 +21,4 @@ app.use("/api/data", getdata);
 const getuser = require("./routes/api/user");
 app.use("/api/user", getuser);
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen (PORT, () => console.log (`Server started on port ${PORT}`));

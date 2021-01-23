@@ -8,8 +8,6 @@ const config = require("config");
 let counter = config.counter;
 const alphaKey = config.alphaKeys;
 
-//console.log(config.alphaKeys[3]);
-
 //@route GET api/data/info/:symbol
 //@desc Get company info
 //@access Pubic
@@ -25,12 +23,22 @@ router.get("/info/:symbol", (req, res) => {
       headers: { "user-agent": "node.js" },
     };
     request(options, (error, response, body) => {
-      if (error) console.error(error);
-
-      if (response.statusCode !== 200) {
-        res.status(404).json({ msg: "No company or relevant data" });
+      if (error) {
+        throw error;
       }
-      res.json(JSON.parse(body));
+      body = JSON.parse(body);
+      console.log(body);
+      if (body.Note) {
+        return res.status(500).json({ msg: "Please wait" });
+      }
+      if (
+        response.statusCode !== 200 ||
+        Object.keys(body["Global Quote"]).length == 0
+      ) {
+        return res.status(404).json({ msg: "No company or relevant data" });
+      }
+
+      return res.json(body);
     });
   } catch (err) {
     console.error(err.message);
@@ -54,12 +62,19 @@ router.get("/:symbol/:duration", (req, res) => {
       headers: { "user-agent": "node.js" },
     };
     request(options, (error, response, body) => {
-      if (error) console.error(error);
-
-      if (response.statusCode !== 200) {
-        res.status(404).json({ msg: "No company or relevant data" });
+      if (error) {
+        throw error;
       }
-      res.json(JSON.parse(body));
+      body = JSON.parse(body);
+      console.log(body);
+      if (body["Error Message"]) {
+        return res.status(500).json({ msg: "Please wait" });
+      }
+      if (response.statusCode !== 200 || Object.keys(body).length === 1) {
+        return res.status(404).json({ msg: "No company or relevant data" });
+      }
+
+      return res.json(body);
     });
   } catch (err) {
     console.error(err.message);
@@ -68,4 +83,24 @@ router.get("/:symbol/:duration", (req, res) => {
   }
 });
 
+// // @route    GET api/data/news
+// // @desc     Get news
+// // @access   Public
+// router.get("/news", async (req, res) => {
+//   try {
+//     const uri = encodeURI(
+//       `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsApi}`
+//     );
+//     const headers = {
+//       "user-agent": "node.js",
+//       Authorization: `token ${config.get("githubToken")}`,
+//     };
+
+//     const gitHubResponse = await axios.get(uri, { headers });
+//     return res.json(gitHubResponse.data);
+//   } catch (err) {
+//     console.error(err.message);
+//     return res.status(404).json({ msg: "No Github profile found" });
+//   }
+// });
 module.exports = router;
