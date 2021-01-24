@@ -20048,11 +20048,13 @@ body {
   background-color: #fff;
 }
 .navbar-dark1 {
-  background-color: #1c2331;
+  background-color: #27293d;
 }
 .navbar .nav-link:hover {
   border-bottom: 1px solid white;
 }
+/* --gray: #6c757d;
+--gray-dark: #32325d */
 .padTop-5 {
   padding-top: 10%;
 }

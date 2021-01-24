@@ -83,10 +83,10 @@ router.get("/:symbol/:duration", (req, res) => {
   }
 });
 
-//@route GET api/data/:symbol1/:symbol2/:duration
+//@route GET api/data/compare/:symbol1/:symbol2/:duration
 //@desc Get compare company timeseries data
 //@access Pubic
-router.get("/:symbol1/:symbol2/:duration", async (req, res) => {
+router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
   try {
     if (counter == 4) counter = 0;
     else counter = counter + 1;
@@ -95,12 +95,31 @@ router.get("/:symbol1/:symbol2/:duration", async (req, res) => {
       `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol1"]}&apikey=${key}`
     );
     var data1 = await request1.json();
+
     const request2 = await fetch(
       `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol2"]}&apikey=${key}`
-    );
+    ).catch((error) => console.log(error));
     var data2 = await request2.json();
+    const KEY = Object.keys(data1);
+    var dataOP = {};
+    data1 = data1[KEY[1]];
+    data2 = data2[KEY[1]];
+    const dates = Object.keys(data1);
+    const dates2 = Object.keys(data2);
 
-    return res.json(data1);
+    //console.log(data1[dates[1]]);
+    for (
+      var i = 0;
+      i < (dates.length > dates2.length ? dates.length : dates2.length);
+      i++
+    ) {
+      // console.log(i);
+      dataOP[dates[i]] = {
+        first: data1[dates[i]]["4. close"] ? data1[dates[i]]["4. close"] : "",
+        second: data2[dates[i]]["4. close"] ? data2[dates[i]]["4. close"] : "",
+      };
+    }
+    return res.json(dataOP);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -108,9 +127,9 @@ router.get("/:symbol1/:symbol2/:duration", async (req, res) => {
   }
 });
 
-// // @route    GET api/data/news
-// // @desc     Get news
-// // @access   Public
+// @route    GET api/data/news
+// @desc     Get news
+// @access   Public
 // router.get("/news", async (req, res) => {
 //   try {
 //     const uri = encodeURI(
@@ -128,4 +147,5 @@ router.get("/:symbol1/:symbol2/:duration", async (req, res) => {
 //     return res.status(404).json({ msg: "No Github profile found" });
 //   }
 // });
+
 module.exports = router;

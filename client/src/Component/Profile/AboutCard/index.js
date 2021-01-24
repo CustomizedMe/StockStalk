@@ -16,77 +16,110 @@ import {
   Col,
 } from "reactstrap";
 
-const AboutCard = ({ profile, isMyProfile }) => {
+const AboutCard = ({ profile, isMyProfile, username }) => {
+  //console.log(profile);
   return (
-    <Card className="card-user">
-      <CardBody>
-        <CardText />
-        <div className="author">
-          <div className="block block-one" />
-          <div className="block block-two" />
-          <div className="block block-three" />
-          <div className="block block-four" />
-          <a href="#pablo" onClick={(e) => e.preventDefault()}>
-            <img alt="..." className="avatar" src={profile.picture} />
-            <h4 className="title">{(profile.user || { name: "" }).name}</h4>
-          </a>
-          <br></br>
-          <p className="description">
+    <div>
+      <Card className="card-user">
+        <CardBody>
+          <CardText />
+          <div className="author">
+            <div className="block block-one" />
+            <div className="block block-two" />
+            <div className="block block-three" />
+            <div className="block block-four" />
+            <a href="#pablo" onClick={(e) => e.preventDefault()}>
+              <img
+                alt="..."
+                className="avatar"
+                src={
+                  profile.picture ||
+                  "https://www.marismith.com/wp-content/uploads/2014/07/facebook-profile-blank-face.jpeg"
+                }
+              />
+              <h4 className="title">
+                {(profile.user || { name: "Profile does not exist" }).name}
+              </h4>
+            </a>
+            <div className="text-muted">
+              @{({ username } || { username: "Test user" }).username}
+            </div>
+            <br></br>
+            <p className="description">
+              {" "}
+              <strong>{`${profile.designation || ""} `}</strong>
+              {`| ${profile.company || ""}`}
+            </p>
+          </div>
+          <p className="card-description">
             {" "}
-            {`${profile.designation || ""} | ${profile.company || ""}`}
+            <small className="align-center">
+              About <br></br>
+            </small>{" "}
+            {profile.about || ""}
           </p>
-        </div>
-        <div className="card-description">{profile.about || ""}</div>
-      </CardBody>
-      <hr></hr>
-      <CardFooter>
-        <div className="button-container">
-          <Button
-            className="btn-icon btn-round"
-            style={{
-              backgroundImage: "none",
-              backgroundColor: " #1da1f2",
-            }}
-          >
-            <a
-              href={(profile.social || { twitter: "" }).twitter}
+        </CardBody>
+        <hr className="dark"></hr>
+        <CardFooter>
+          <div className="button-container">
+            <Button
               className="btn-icon btn-round"
-              color="twitter"
+              style={{
+                backgroundImage: "none",
+                backgroundColor: " #1da1f2",
+              }}
             >
-              <i className=" text-white fab fa-twitter"></i>
-            </a>
-          </Button>
-          <Button
-            className="btn-icon btn-round"
-            style={{
-              backgroundImage: "none",
-              backgroundColor: "#3b5998",
-            }}
-          >
-            <a
-              href={(profile.social || { facebook: "" }).facebook}
-              className="text-white icon "
+              <a
+                href={(profile.social || { twitter: "" }).twitter}
+                className="btn-icon btn-round"
+                color="twitter"
+              >
+                <i className=" text-white fab fa-twitter"></i>
+              </a>
+            </Button>
+            <Button
+              className="btn-icon btn-round"
+              style={{
+                backgroundImage: "none",
+                backgroundColor: "#3b5998",
+              }}
             >
-              <i className=" fab fa-facebook"></i>
-            </a>
-          </Button>
-          <Button
-            className="btn-icon btn-round"
-            style={{
-              backgroundImage: "none",
-              backgroundColor: "#0a66c2",
-            }}
-          >
-            <a
-              href={(profile.social || { linkedin: "" }).linkedin}
-              className="text-white icon "
+              <a
+                href={(profile.social || { facebook: "" }).facebook}
+                className="text-white icon "
+              >
+                <i className=" fab fa-facebook"></i>
+              </a>
+            </Button>
+            <Button
+              className="btn-icon btn-round"
+              style={{
+                backgroundImage: "none",
+                backgroundColor: "#0a66c2",
+              }}
             >
-              <i className="fab fa-linkedin"></i>
-            </a>
-          </Button>
-        </div>
-      </CardFooter>
-    </Card>
+              <a
+                href={(profile.social || { linkedin: "" }).linkedin}
+                className="text-white icon "
+              >
+                <i className="fab fa-linkedin"></i>
+              </a>
+            </Button>
+          </div>
+        </CardFooter>
+      </Card>
+
+      {isMyProfile ? (
+        <Link
+          to="/editprofile"
+          className="btn btn-outline-danger mx-auto mt-5 w-100"
+        >
+          Edit my profile
+        </Link>
+      ) : (
+        ""
+      )}
+    </div>
   );
 };
 

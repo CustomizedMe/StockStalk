@@ -44,7 +44,11 @@ const Profile = ({ props, username, location }) => {
         <div className="container">
           <div className="row">
             <div className="col-5 ">
-              <AboutCard profile={profile} isMyProfile={isMyProfile} />
+              <AboutCard
+                profile={profile}
+                isMyProfile={isMyProfile}
+                username={username}
+              />
             </div>
             <div className="col-7">
               <PostsCard posts={posts} />

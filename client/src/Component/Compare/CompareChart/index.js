@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
 import { Card, CardBody } from "reactstrap";
 
-const CompareChart = (props) => {
+const CompareChart = ({ compareData, company1, company2 }) => {
+  var dates = Object.keys(compareData);
+  dates.reverse();
+  var company1Data = [];
+  var company2Data = [];
+  for (var i = 0; i < dates.length; i++) {
+    company1Data.push(compareData[dates[i]]["first"]);
+    company2Data.push(compareData[dates[i]]["second"]);
+  }
   var options = {
     chart: {
       height: 350,
@@ -16,12 +24,12 @@ const CompareChart = (props) => {
     colors: ["#FF1654", "#247BA0"],
     series: [
       {
-        name: "Company I",
-        data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6],
+        name: company1,
+        data: company1Data,
       },
       {
-        name: "Company I",
-        data: [20, 29, 37, 36, 44, 45, 50, 58],
+        name: company2,
+        data: company2Data,
       },
     ],
     stroke: {
@@ -33,7 +41,7 @@ const CompareChart = (props) => {
       },
     },
     xaxis: {
-      categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+      categories: dates,
     },
     yaxis: [
       {
@@ -50,7 +58,7 @@ const CompareChart = (props) => {
           },
         },
         title: {
-          text: "Series A",
+          text: company1,
           style: {
             color: "#FF1654",
           },
@@ -71,7 +79,7 @@ const CompareChart = (props) => {
           },
         },
         title: {
-          text: "Company 2",
+          text: company2,
           style: {
             color: "#247BA0",
           },
@@ -91,13 +99,13 @@ const CompareChart = (props) => {
     },
   };
   return (
-    <div>
+    <div className="mt-10">
       <Card>
         <Chart
           options={options}
           series={options.series}
           type="line"
-          width={1200}
+          width={1000}
           height={350}
         />
       </Card>
