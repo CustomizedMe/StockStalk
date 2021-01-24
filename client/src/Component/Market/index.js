@@ -59,6 +59,7 @@ const Market = ({ location, history }) => {
       .then((data) => {
         const keys = Object.keys(data);
         const report = data[keys[1]];
+        console.log(chartData);
         setChartData(report);
       })
       .catch((err) => {
