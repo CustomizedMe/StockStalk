@@ -16,7 +16,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
         (black ? " navbar-dark1" : "")
       }
     >
-      <div className="container text-uppercase">
+      <div className="container text-uppercase font-mont">
         <Link to="/" className="navbar-brand fs-1 text-light">
           <span className="text-light text-uppercase fw-bold">Stock</span>
           Stalk

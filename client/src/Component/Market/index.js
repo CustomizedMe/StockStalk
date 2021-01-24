@@ -113,7 +113,6 @@ const Market = ({ location, history }) => {
   const onChangeCompanyForm = ({ target }) => {
     setCommentDataForm({ ...CommentDataForm, [target.name]: target.value });
   };
-  console.log(companyName, data);
   return (
     <PageLayout page="market" history={history}>
       <section className="market dark min-vh-100 text-light padTop-5 pb-5">
@@ -140,7 +139,9 @@ const Market = ({ location, history }) => {
               <h2 className=" text-center mt-5 pt-5">
                 Here's the latest financial news
               </h2>
-              <NewsCard News={NewsData} />
+              <div>
+                <NewsCard News={NewsData} />
+              </div>
             </Fragment>
           )}
         </div>

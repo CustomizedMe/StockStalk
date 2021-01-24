@@ -1,121 +1,176 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import PageLayout from "../../Layout/PageLayout";
 import { Link } from "react-router-dom";
+import { Collapse, Button, CardBody, Card, CardTitle, Col } from "reactstrap";
 
 const Faqs = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
   return (
     <PageLayout page="faqs">
-      <div className="padTop-5 card ">
-        <div className="accordion mt-500">
-          <div className="card ">
-            <div className="card-header" id="headingOne">
-              <h2 className="mb-0">
-                <button
-                  className="btn btn-link"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Collapsible Group Item #1
-                </button>
-              </h2>
-            </div>
-
-            <div
-              id="collapseOne"
-              className="collapse show"
-              aria-labelledby="headingOne"
-              data-parent="#accordionExample"
+      <section className="dark min-vh-100 padTop-5 w-100 flex-align-auto">
+        <Col md={10} align="right">
+          <div>
+            <CardTitle
+              className="text-white h3"
+              color="white"
+              onClick={toggle}
+              style={{ marginBottom: "2rem" }}
             >
-              <div className="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life
-                accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                non cupidatat skateboard dolor brunch. Food truck quinoa
-                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
-                put a bird on it squid single-origin coffee nulla assumenda
-                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-                wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                excepteur butcher vice lomo. Leggings occaecat craft beer
-                farm-to-table, raw denim aesthetic synth nesciunt you probably
-                haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
+              What is StockStalk?
+            </CardTitle>
+            <Collapse isOpen={isOpen}>
+              <Card style={{ marginBottom: "2rem" }}>
+                <CardBody>
+                  Web Application that is a one resource for investors, finance
+                  enthusiasts, information seekers for them to analyze stocks.
+                  We have features to analyze the time series data based on
+                  monthly, weekly and daily adjusted prices with a single
+                  search. Along with that, one can compare two stocks on their
+                  time series information.
+                  <p>
+                    But that's not what makes StockStalk different, there is a
+                    functionality to check other investor profiles, check ou
+                    thier views on different companies and your views on company
+                    pages. The market page also awaits with latest financial
+                    news.
+                  </p>
+                </CardBody>
+              </Card>
+            </Collapse>
           </div>
-          <div className="card">
-            <div className="card-header" id="headingTwo">
-              <h2 className="mb-0">
-                <button
-                  className="btn btn-link collapsed"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#collapseTwo"
-                  aria-expanded="false"
-                  aria-controls="collapseTwo"
-                >
-                  Collapsible Group Item #2
-                </button>
-              </h2>
-            </div>
-            <div
-              id="collapseTwo"
-              className="collapse"
-              aria-labelledby="headingTwo"
-              data-parent="#accordionExample"
+        </Col>
+        <Col md={10} align="left">
+          <div>
+            <CardTitle
+              className="text-white h3"
+              color="white"
+              onClick={toggle}
+              style={{ marginBottom: "2rem" }}
             >
-              <div className="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life
-                accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                non cupidatat skateboard dolor brunch. Food truck quinoa
-                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
-                put a bird on it squid single-origin coffee nulla assumenda
-                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-                wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                excepteur butcher vice lomo. Leggings occaecat craft beer
-                farm-to-table, raw denim aesthetic synth nesciunt you probably
-                haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
+              What is the data that StockStalk serves?
+            </CardTitle>
+            <Collapse isOpen={isOpen}>
+              <Card>
+                <CardBody>
+                  As for now StockStalk supports the Company Data from BSE (we
+                  will soon add Global Data functionality and support). Search
+                  can be done by both Scrip codes and Exact Names by which the
+                  companies are listed on Bombay Stock Exchange.
+                </CardBody>
+              </Card>
+            </Collapse>
           </div>
-          <div className="card">
-            <div className="card-header" id="headingThree">
-              <h2 className="mb-0">
-                <button
-                  className="btn btn-link collapsed"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#collapseThree"
-                  aria-expanded="false"
-                  aria-controls="collapseThree"
-                >
-                  Collapsible Group Item #3
-                </button>
-              </h2>
-            </div>
-            <div
-              id="collapseThree"
-              className="collapse"
-              aria-labelledby="headingThree"
-              data-parent="#accordionExample"
+        </Col>
+        <Col md={10} align="right">
+          <div>
+            <CardTitle
+              className="text-white h3"
+              color="white"
+              onClick={toggle}
+              style={{ marginBottom: "2rem" }}
             >
-              <div className="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life
-                accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                non cupidatat skateboard dolor brunch. Food truck quinoa
-                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
-                put a bird on it squid single-origin coffee nulla assumenda
-                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-                wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                excepteur butcher vice lomo. Leggings occaecat craft beer
-                farm-to-table, raw denim aesthetic synth nesciunt you probably
-                haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
+              What is StockStalk?
+            </CardTitle>
+            <Collapse isOpen={isOpen}>
+              <Card style={{ marginBottom: "2rem" }}>
+                <CardBody>
+                  Web Application that is a one resource for investors, finance
+                  enthusiasts, information seekers for them to analyze stocks.
+                  We have features to analyze the time series data based on
+                  monthly, weekly and daily adjusted prices with a single
+                  search. Along with that, one can compare two stocks on their
+                  time series information.
+                  <p>
+                    But that's not what makes StockStalk different, there is a
+                    functionality to check other investor profiles, check ou
+                    thier views on different companies and your views on company
+                    pages. The market page also awaits with latest financial
+                    news.
+                  </p>
+                </CardBody>
+              </Card>
+            </Collapse>
           </div>
-        </div>
-      </div>
+        </Col>
+        <Col md={10} align="left">
+          <div>
+            <CardTitle
+              className="text-white h3"
+              color="white"
+              onClick={toggle}
+              style={{ marginBottom: "2rem" }}
+            >
+              What is the data that StockStalk serves?
+            </CardTitle>
+            <Collapse isOpen={isOpen}>
+              <Card>
+                <CardBody>
+                  As for now StockStalk supports the Company Data from BSE (we
+                  will soon add Global Data functionality and support). Search
+                  can be done by both Scrip codes and Exact Names by which the
+                  companies are listed on Bombay Stock Exchange.
+                </CardBody>
+              </Card>
+            </Collapse>
+          </div>
+        </Col>
+        <Col md={10} align="right">
+          <div>
+            <CardTitle
+              className="text-white h3"
+              color="white"
+              onClick={toggle}
+              style={{ marginBottom: "2rem" }}
+            >
+              What is StockStalk?
+            </CardTitle>
+            <Collapse isOpen={isOpen}>
+              <Card style={{ marginBottom: "2rem" }}>
+                <CardBody>
+                  Web Application that is a one resource for investors, finance
+                  enthusiasts, information seekers for them to analyze stocks.
+                  We have features to analyze the time series data based on
+                  monthly, weekly and daily adjusted prices with a single
+                  search. Along with that, one can compare two stocks on their
+                  time series information.
+                  <p>
+                    But that's not what makes StockStalk different, there is a
+                    functionality to check other investor profiles, check ou
+                    thier views on different companies and your views on company
+                    pages. The market page also awaits with latest financial
+                    news.
+                  </p>
+                </CardBody>
+              </Card>
+            </Collapse>
+          </div>
+        </Col>
+        <Col md={10} align="left">
+          <div>
+            <CardTitle
+              className="text-white h3"
+              color="white"
+              onClick={toggle}
+              style={{ marginBottom: "2rem" }}
+            >
+              What is the data that StockStalk serves?
+            </CardTitle>
+            <Collapse isOpen={isOpen}>
+              <Card>
+                <CardBody>
+                  As for now StockStalk supports the Company Data from BSE (we
+                  will soon add Global Data functionality and support). Search
+                  can be done by both Scrip codes and Exact Names by which the
+                  companies are listed on Bombay Stock Exchange.
+                </CardBody>
+              </Card>
+            </Collapse>
+          </div>
+        </Col>
+      </section>
     </PageLayout>
   );
 };

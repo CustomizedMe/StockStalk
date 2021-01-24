@@ -17,8 +17,25 @@ export function companyChart(company, duration) {
   const url = BASE_URL + `data/${company}/${duration} `;
   return Axios.get(url).then((data) => data.data);
 }
+
 export function newsFeed() {
   const url =
-    "http://newsapi.org/v2/top-headlines?country=in&apiKey=fcf2844727134ba8a3ba4513467e6e1c";
+    "http://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=fcf2844727134ba8a3ba4513467e6e1c";
   return Axios.get(url).then((data) => data.data);
+  // return Axios.get(url).then((data) => {
+  //   var X = data.data.articles;
+  //   for (var i = 0; i < X.length; i++) {
+  //     console.log(X[i]);
+  //     var newX = X[i]["content"];
+  //     if (!newX) continue;
+  //     var n = newX.indexOf("[+");
+  //     if (n === -1) continue;
+  //     else {
+  //       X[i].content = newX.slice(0, n);
+  //     }
+  //   }
+  //   data.data.articles = X;
+  //   console.log(data.data);
+  //   return data.data;
+  // });
 }

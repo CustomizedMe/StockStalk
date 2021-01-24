@@ -16,9 +16,9 @@ const config = {
 };
 
 export function addComment(comment) {
-  // console.log(`add comment called with company ${comment.symbol}`);
-  // console.log(comment);
-  // console.log(config.headers);
+  console.log(`add comment called with company ${comment.symbol}`);
+  console.log(comment);
+  console.log(config.headers);
   const url = BASE_URL + "/comment/add";
   return Axios.post(url, comment, config).then((data) => data.data);
 }

@@ -3,7 +3,7 @@ const router = express.Router();
 const company = require("../../models/Company");
 const request = require("request");
 const config = require("config");
-
+const fetch = require("node-fetch");
 //const Exchange = "BSE";
 let counter = config.counter;
 const alphaKey = config.alphaKeys;
@@ -27,7 +27,7 @@ router.get("/info/:symbol", (req, res) => {
         throw error;
       }
       body = JSON.parse(body);
-      console.log(body);
+      //console.log(body);
       if (body.Note) {
         return res.status(500).json({ msg: "Please wait" });
       }
@@ -76,6 +76,31 @@ router.get("/:symbol/:duration", (req, res) => {
 
       return res.json(body);
     });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+    console.log(err);
+  }
+});
+
+//@route GET api/data/:symbol1/:symbol2/:duration
+//@desc Get compare company timeseries data
+//@access Pubic
+router.get("/:symbol1/:symbol2/:duration", async (req, res) => {
+  try {
+    if (counter == 4) counter = 0;
+    else counter = counter + 1;
+    let key = alphaKey[counter];
+    const request1 = await fetch(
+      `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol1"]}&apikey=${key}`
+    );
+    var data1 = await request1.json();
+    const request2 = await fetch(
+      `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol2"]}&apikey=${key}`
+    );
+    var data2 = await request2.json();
+
+    return res.json(data1);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
