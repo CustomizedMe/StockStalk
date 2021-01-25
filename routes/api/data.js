@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const company = require("../../models/Company");
+//const company = require("../../models/Company");
 const request = require("request");
 const config = require("config");
 const fetch = require("node-fetch");

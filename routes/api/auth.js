@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
-const User = require("../../models/User");
+const User = require("../../models/user");
 
 // @route  POST api/auth/register
 // @desc   registering the user
