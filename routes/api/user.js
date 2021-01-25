@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
-const Comment = require("../../models/comment");
-const User = require("../../models/user");
-const Profile = require("../../models/profile");
+const Comment = require("../../models/Comment");
+const User = require("../../models/User");
+const Profile = require("../../models/Profile");
 
 // @route    GET api/user/profile/me
 // @desc     Get current users profile
@@ -50,7 +50,9 @@ router.post(
       about,
       gender,
       picture,
-      social,
+      twitter,
+      facebook,
+      linkedin,
       // spread the rest of the fields we don't need to check...rest
     } = req.body;
     // Build profile object
@@ -62,15 +64,11 @@ router.post(
     if (about) profileFields.about = about;
     if (picture) profileFields.picture = picture;
     // Build social object
-    profileFields.social = social;
-
-    /*
+    profileFields.social = {};
     if (twitter) profileFields.social.twitter = twitter;
     if (facebook) profileFields.social.facebook = facebook;
     if (linkedin) profileFields.social.linkedin = linkedin;
-    */
 
-    console.log(profileFields);
     try {
       // Using upsert option (creates new doc if no match is found):
       let profile = await Profile.findOneAndUpdate(
@@ -78,10 +76,6 @@ router.post(
         { $set: profileFields },
         { new: true, upsert: true, setDefaultsOnInsert: true }
       );
-<<<<<<< HEAD
-=======
-      console.log(profile);
->>>>>>> jan21
       return res.json(profile);
     } catch (err) {
       console.error(err.message);
@@ -90,19 +84,12 @@ router.post(
   }
 );
 
-// @route    GET api/profile/:username
+// @route    GET api/profile/:user_id
 // @desc     Get profile by user ID
 // @access   Public
-<<<<<<< HEAD
 router.get("/profile/:username", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
-=======
-router.get("/profile/:username", auth, async (req, res) => {
-  try {
-    const user = await User.findOne({ username: req.params.username });
-    console.log(user);
->>>>>>> jan21
     const profile = await Profile.findOne({
       user: user._id,
     }).populate("user", ["name"]);
@@ -121,7 +108,7 @@ router.get("/profile/:username", auth, async (req, res) => {
 // @route    GET api/profile
 // @desc     Get all profiles
 // @access   Public
-router.get("/profile/users/all", auth, async (req, res) => {
+router.get("/profile/users/all", async (req, res) => {
   try {
     const profiles = await Profile.find().populate("user", [
       "username",
@@ -184,7 +171,7 @@ router.get("/comment/all", auth, async (req, res) => {
 // @route Get api/user/comment/:username
 // @desc get all comments
 // @access Private
-router.get("/comment/:username", auth, async (req, res) => {
+router.get("/comment/:username", async (req, res) => {
   try {
     const Username = req.params.username; //change this to logged -in user id
     /*const userID = User.
@@ -203,7 +190,7 @@ router.get("/comment/:username", auth, async (req, res) => {
 // @route Get api/user/comment/company/:symbol
 // @desc get comments in a company
 // @access Private
-router.get("/comment/company/:symbol", auth, async (req, res) => {
+router.get("/comment/company/:symbol", async (req, res) => {
   try {
     const Symbol = req.params.symbol;
     const result = await Comment.find({ symbol: Symbol }).populate("comments");

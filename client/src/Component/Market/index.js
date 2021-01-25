@@ -59,10 +59,6 @@ const Market = ({ location, history }) => {
       .then((data) => {
         const keys = Object.keys(data);
         const report = data[keys[1]];
-<<<<<<< HEAD
-=======
-        console.log(chartData);
->>>>>>> jan21
         setChartData(report);
       })
       .catch((err) => {
@@ -89,13 +85,8 @@ const Market = ({ location, history }) => {
   const fetchCommentData = () => {
     MarketApi.companyComments(companyName).then((data) => {
       setCommentData(data);
-<<<<<<< HEAD
       console.log("data here");
       console.log(data);
-=======
-      // console.log("data here");
-      // console.log(data);
->>>>>>> jan21
     });
   };
   const onSubmit = (e) => {
@@ -105,7 +96,6 @@ const Market = ({ location, history }) => {
 
   const onChange = ({ target }) => {
     setCompany(target.value.toUpperCase());
-<<<<<<< HEAD
   };
 
   const onChangeCurrentStatus = (value) => {
@@ -122,26 +112,8 @@ const Market = ({ location, history }) => {
 
   const onChangeCompanyForm = ({ target }) => {
     setCommentDataForm({ ...CommentDataForm, [target.name]: target.value });
-=======
->>>>>>> jan21
   };
-
-  const onChangeCurrentStatus = (value) => {
-    setCurrentStatus(value);
-  };
-  const onSubmitForm = (e) => {
-    e.preventDefault();
-    setCommentDataForm({ ...CommentDataForm, text: "" });
-    CommentApi.addComment(CommentDataForm).then((data) => {
-      // console.log(data);
-      setCommentData([data, ...CommentData]);
-    });
-  };
-
-  const onChangeCompanyForm = ({ target }) => {
-    setCommentDataForm({ ...CommentDataForm, [target.name]: target.value });
-  };
-  //console.log(companyName, data);
+  console.log(companyName, data);
   return (
     <PageLayout page="market" history={history}>
       <section className="market dark min-vh-100 text-light padTop-5 pb-5">
@@ -168,13 +140,7 @@ const Market = ({ location, history }) => {
               <h2 className=" text-center mt-5 pt-5">
                 Here's the latest financial news
               </h2>
-<<<<<<< HEAD
               <NewsCard News={NewsData} />
-=======
-              <div>
-                <NewsCard News={NewsData} />
-              </div>
->>>>>>> jan21
             </Fragment>
           )}
         </div>

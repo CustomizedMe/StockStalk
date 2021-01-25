@@ -76,7 +76,7 @@ const SChart = ({ data, status, onChangeStatus }) => {
           options={options}
           series={series}
           type="candlestick"
-          width={650}
+          width={750}
           height={350}
         />
       </div>

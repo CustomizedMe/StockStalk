@@ -44,17 +44,6 @@ function Register({ login, location, history }) {
   };
   const onRegisterSubmit = (e) => {
     e.preventDefault();
-    //console.log(Formdata.username)
-    registerUser(formDetails)
-      .then((data) => {
-        console.log(data);
-        //login(data);
-        history.push("/enter/login");
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Please check your username or email");
-      });
   };
 
   return (

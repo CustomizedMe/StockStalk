@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
-<<<<<<< HEAD
-=======
-import { Button } from "reactstrap";
->>>>>>> jan21
 export default function NavBar({ loggedIn, black, page, logout }) {
   const [search, setSearch] = useState("");
   let history = useHistory();
@@ -20,7 +16,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
         (black ? " navbar-dark1" : "")
       }
     >
-      <div className="container text-uppercase font-mont">
+      <div className="container text-uppercase">
         <Link to="/" className="navbar-brand fs-1 text-light">
           <span className="text-light text-uppercase fw-bold">Stock</span>
           Stalk
@@ -70,7 +66,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
                     onClick={() => {
                       logout();
                     }}
-                    className="nav-link text-white"
+                    className=" btn nav-link text-white"
                   >
                     Logout
                   </Link>
@@ -98,11 +94,10 @@ export default function NavBar({ loggedIn, black, page, logout }) {
               value={search}
               onChange={({ target }) => setSearch(target.value.toUpperCase())}
             />
-            <Button
-              className="btn-simple fas fa-search fa-1x"
-              color="success"
+            <button
+              className="btn btn-outline-light fas fa-search fa-1x"
               type="submit"
-            ></Button>
+            ></button>
           </form>
         </div>
       </div>

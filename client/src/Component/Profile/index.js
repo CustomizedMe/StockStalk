@@ -22,10 +22,6 @@ const Profile = ({ props, username, location }) => {
     ProfileApi.getProfile(currentUsername).then((data) => {
       setProfile(data);
       console.log("profile here");
-<<<<<<< HEAD
-=======
-      console.log(data);
->>>>>>> jan21
       setIsMyProfile(username === currentUsername);
     });
   }, [currentUsername, username]);
@@ -34,22 +30,13 @@ const Profile = ({ props, username, location }) => {
     CommentApi.userComments(currentUsername).then((data) => {
       setPost(data);
       // console.log("comments here");
-<<<<<<< HEAD
       console.log(data);
-=======
-      // console.log(data);
->>>>>>> jan21
       // console.log(posts);
     });
   }, [currentUsername]);
 
-<<<<<<< HEAD
   console.log("posts here");
   console.log(posts);
-=======
-  // console.log("posts here");
-  // console.log(posts);
->>>>>>> jan21
 
   return (
     <PageLayout page="profile">
@@ -57,15 +44,7 @@ const Profile = ({ props, username, location }) => {
         <div className="container">
           <div className="row">
             <div className="col-5 ">
-<<<<<<< HEAD
               <AboutCard profile={profile} isMyProfile={isMyProfile} />
-=======
-              <AboutCard
-                profile={profile}
-                isMyProfile={isMyProfile}
-                username={currentUsername}
-              />
->>>>>>> jan21
             </div>
             <div className="col-7">
               <PostsCard posts={posts} />

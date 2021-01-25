@@ -6,7 +6,6 @@
     "@fortawesome/fontawesome-free": "5.15.1",
     "axios": "^0.21.1",
 <<<<<<< HEAD
-<<<<<<< HEAD
     "bootstrap": "4.5.3",
     "bootstrap-sass": "^3.3.7",
     "chart.js": "2.9.4",
@@ -17,9 +16,6 @@
 =======
     "newsapi": "^2.4.1",
 >>>>>>> 3f8aaba59c3e9708e7caac83d22b12cb63a98798
-=======
-    "newsapi": "^2.4.1",
->>>>>>> jan21
     "prop-types": "15.7.2",
     "react": "17.0.1",
     "react-chartjs-2": "2.11.1",
@@ -28,12 +24,7 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "5.2.0",
     "react-scripts": "^4.0.1",
-<<<<<<< HEAD
     "reactstrap": "8.7.1",
-=======
-    "react-strap": "0.0.1",
-    "reactstrap": "^8.9.0",
->>>>>>> jan21
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0"
@@ -42,7 +33,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "compile-scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/black-dashboard-react.scss src/assets/css/black-dashboard-react.css"
   },
   "eslintConfig": {
     "extends": [
