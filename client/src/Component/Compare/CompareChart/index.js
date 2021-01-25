@@ -21,7 +21,7 @@ const CompareChart = ({ compareData, company1, company2 }) => {
     dataLabels: {
       enabled: false,
     },
-    colors: ["#FF1654", "#247BA0"],
+    colors: ["#e14eca", "#1d8cf8"],
     series: [
       {
         name: company1,
@@ -50,17 +50,17 @@ const CompareChart = ({ compareData, company1, company2 }) => {
         },
         axisBorder: {
           show: true,
-          color: "#FF1654",
+          color: "#e14eca",
         },
         labels: {
           style: {
-            colors: "#FF1654",
+            colors: "#e14eca",
           },
         },
         title: {
           text: company1,
           style: {
-            color: "#FF1654",
+            color: "#e14eca",
           },
         },
       },
@@ -71,17 +71,17 @@ const CompareChart = ({ compareData, company1, company2 }) => {
         },
         axisBorder: {
           show: true,
-          color: "#247BA0",
+          color: "#1d8cf8",
         },
         labels: {
           style: {
-            colors: "#247BA0",
+            colors: "#1d8cf8",
           },
         },
         title: {
           text: company2,
           style: {
-            color: "#247BA0",
+            color: "#1d8cf8",
           },
         },
       },
@@ -96,10 +96,15 @@ const CompareChart = ({ compareData, company1, company2 }) => {
     legend: {
       horizontalAlign: "center",
       offsetX: 40,
+      fontFamily: "Poppins",
+      labels: {
+        colors: "#ffffff",
+        useSeriesColors: true,
+      },
     },
   };
   return (
-    <div className="mt-10">
+    <div className="container">
       <Card>
         <Chart
           options={options}

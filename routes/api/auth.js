@@ -51,7 +51,7 @@ router.post(
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
       await user.save();
-      const jwtSecret = process.env.jwtSecret;
+      const jwtSecret = config.get("jwtSecret");
       //Return jsonwebtoken
       const payload = {
         user: {

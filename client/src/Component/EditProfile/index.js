@@ -5,27 +5,7 @@ import ProfileForm from "./ProfileForm";
 import * as ProfileApi from "../../Api/ProfileApi";
 
 const EditProfile = ({ history }) => {
-  const initial_profile = {
-    social: {
-      twitter: "twitter.com",
-      facebook: "fb.com",
-      linkedin: "youtube.com",
-    },
-    _id: "5ffae3ae0907310df870fb6f",
-    user: {
-      _id: "5ff962a530f44c36c88cc4e0",
-      username: "abc",
-      name: "abc",
-    },
-    company: "My company",
-    designation: "Developer",
-    gender: "Male",
-    about: "Developer Pro Max 2 ",
-    picture:
-      "https://robohash.org/commodiofficiisducimus.bmp?size=50x50&set=set1",
-    regdate: "2021-01-10T11:23:26.027Z",
-    __v: 0,
-  };
+  const initial_profile = {};
   const [profile, setProfile] = useState(initial_profile);
 
   const onChange = ({ target }) => {

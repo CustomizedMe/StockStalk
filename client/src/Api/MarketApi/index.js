@@ -14,7 +14,7 @@ export function companyInfo(company) {
 
 export function companyChart(company, duration) {
   console.log(`chart called for ${company}`);
-  const url = BASE_URL + `data${company}/${duration} `;
+  const url = BASE_URL + `data/${company}/${duration} `;
   return Axios.get(url).then((data) => data.data);
 }
 

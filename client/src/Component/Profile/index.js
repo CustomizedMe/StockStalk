@@ -22,6 +22,7 @@ const Profile = ({ props, username, location }) => {
     ProfileApi.getProfile(currentUsername).then((data) => {
       setProfile(data);
       console.log("profile here");
+      console.log(data);
       setIsMyProfile(username === currentUsername);
     });
   }, [currentUsername, username]);
@@ -47,7 +48,7 @@ const Profile = ({ props, username, location }) => {
               <AboutCard
                 profile={profile}
                 isMyProfile={isMyProfile}
-                username={username}
+                username={currentUsername}
               />
             </div>
             <div className="col-7">

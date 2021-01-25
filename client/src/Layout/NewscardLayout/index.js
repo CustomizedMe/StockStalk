@@ -23,10 +23,10 @@ const NewscardLayout = ({ news }) => {
   //console.log(news);
   return (
     <div
-      className="card dark mt-0 ml-1 mb-5 mr-1 pr-2 pl-2 pb-2 pt-2"
+      className="card dark mt-0 mx-1 mb-5 p-2"
       style={{
         width: "22rem",
-        height: "450",
+        height: "550px",
         verticalAlign: "top",
         //alignContent: "first-baseline",
         //minHeight: "450",
@@ -35,6 +35,7 @@ const NewscardLayout = ({ news }) => {
     >
       <Link to={news.url}>
         <CardImg
+          style={{}}
           src={news.urlToImage}
           className="card-img-top"
           alt="..."

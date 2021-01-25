@@ -84,12 +84,13 @@ router.post(
   }
 );
 
-// @route    GET api/profile/:user_id
+// @route    GET api/profile/:username
 // @desc     Get profile by user ID
 // @access   Public
-router.get("/profile/:username", async (req, res) => {
+router.get("/profile/:username", auth, async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
+    console.log(user);
     const profile = await Profile.findOne({
       user: user._id,
     }).populate("user", ["name"]);
@@ -108,7 +109,7 @@ router.get("/profile/:username", async (req, res) => {
 // @route    GET api/profile
 // @desc     Get all profiles
 // @access   Public
-router.get("/profile/users/all", async (req, res) => {
+router.get("/profile/users/all", auth, async (req, res) => {
   try {
     const profiles = await Profile.find().populate("user", [
       "username",
@@ -171,7 +172,7 @@ router.get("/comment/all", auth, async (req, res) => {
 // @route Get api/user/comment/:username
 // @desc get all comments
 // @access Private
-router.get("/comment/:username", async (req, res) => {
+router.get("/comment/:username", auth, async (req, res) => {
   try {
     const Username = req.params.username; //change this to logged -in user id
     /*const userID = User.
@@ -190,7 +191,7 @@ router.get("/comment/:username", async (req, res) => {
 // @route Get api/user/comment/company/:symbol
 // @desc get comments in a company
 // @access Private
-router.get("/comment/company/:symbol", async (req, res) => {
+router.get("/comment/company/:symbol", auth, async (req, res) => {
   try {
     const Symbol = req.params.symbol;
     const result = await Comment.find({ symbol: Symbol }).populate("comments");

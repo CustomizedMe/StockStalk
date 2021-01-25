@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
+import { Button } from "reactstrap";
 export default function NavBar({ loggedIn, black, page, logout }) {
   const [search, setSearch] = useState("");
   let history = useHistory();
@@ -66,7 +67,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
                     onClick={() => {
                       logout();
                     }}
-                    className=" btn nav-link text-white"
+                    className="nav-link text-white"
                   >
                     Logout
                   </Link>
@@ -94,10 +95,11 @@ export default function NavBar({ loggedIn, black, page, logout }) {
               value={search}
               onChange={({ target }) => setSearch(target.value.toUpperCase())}
             />
-            <button
-              className="btn btn-outline-light fas fa-search fa-1x"
+            <Button
+              className="btn-simple fas fa-search fa-1x"
+              color="success"
               type="submit"
-            ></button>
+            ></Button>
           </form>
         </div>
       </div>

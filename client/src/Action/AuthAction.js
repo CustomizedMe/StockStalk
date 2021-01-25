@@ -1,7 +1,6 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "./types";
+import { LOGIN_SUCCESS,LOGOUT } from "./types";
 
 export const loginAction = (data) => (dispatch) => {
-  // console.log(user);
   dispatch({ type: LOGIN_SUCCESS, payload: data });
 };
 
