@@ -86,8 +86,8 @@ const Market = ({ location, history }) => {
   const fetchCommentData = () => {
     MarketApi.companyComments(companyName).then((data) => {
       setCommentData(data);
-      console.log("data here");
-      console.log(data);
+      // console.log("data here");
+      // console.log(data);
     });
   };
   const onSubmit = (e) => {
@@ -106,7 +106,7 @@ const Market = ({ location, history }) => {
     e.preventDefault();
     setCommentDataForm({ ...CommentDataForm, text: "" });
     CommentApi.addComment(CommentDataForm).then((data) => {
-      console.log(data);
+      // console.log(data);
       setCommentData([data, ...CommentData]);
     });
   };

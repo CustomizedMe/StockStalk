@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { Card, CardTitle, Form } from "reactstrap";
 
 const ProfileForm = ({ profile, onChange, onSubmit }) => {
-  console.log("object");
-  console.log(profile);
   return (
     <Card className="cardtext-white px-4">
       <CardTitle className="card-header py-3 mt-4 text-center">

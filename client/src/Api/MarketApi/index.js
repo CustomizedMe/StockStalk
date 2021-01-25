@@ -13,13 +13,11 @@ export function companyInfo(company) {
 }
 
 export function companyChart(company, duration) {
-  console.log(`chart called for ${company}`);
   const url = BASE_URL + `data/${company}/${duration} `;
   return Axios.get(url).then((data) => data.data);
 }
 
 export function compareChart(company1, company2, duration) {
-  console.log(`chart called for ${company1}`);
   const url = BASE_URL + `data/compare/${company1}/${company2}/${duration} `;
   return Axios.get(url).then((data) => data.data);
 }

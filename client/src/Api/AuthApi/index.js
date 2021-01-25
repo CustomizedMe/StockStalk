@@ -10,7 +10,7 @@ const BASE_URL = "/api/auth";
 
 export function registerUser(user) {
   const url = BASE_URL + "/register";
-  console.log(user);
+  //console.log(user);
   return Axios.post(url, user);
 }
 

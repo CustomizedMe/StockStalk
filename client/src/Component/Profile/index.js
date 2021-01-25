@@ -31,13 +31,13 @@ const Profile = ({ props, username, location }) => {
     CommentApi.userComments(currentUsername).then((data) => {
       setPost(data);
       // console.log("comments here");
-      console.log(data);
+      // console.log(data);
       // console.log(posts);
     });
   }, [currentUsername]);
 
-  console.log("posts here");
-  console.log(posts);
+  // console.log("posts here");
+  // console.log(posts);
 
   return (
     <PageLayout page="profile">
