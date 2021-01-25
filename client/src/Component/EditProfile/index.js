@@ -15,12 +15,12 @@ const EditProfile = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    //console.log(profile);
+    console.log(profile);
     ProfileApi.editProfile(profile)
       .then((data) => {
         //console.log(data);
         setProfile(data);
-        history.push("/market");
+        history.push("/profile");
       })
       .catch((err) => {
         console.log(err);

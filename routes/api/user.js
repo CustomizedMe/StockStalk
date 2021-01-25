@@ -50,9 +50,7 @@ router.post(
       about,
       gender,
       picture,
-      twitter,
-      facebook,
-      linkedin,
+      social,
       // spread the rest of the fields we don't need to check...rest
     } = req.body;
     // Build profile object
@@ -64,11 +62,15 @@ router.post(
     if (about) profileFields.about = about;
     if (picture) profileFields.picture = picture;
     // Build social object
-    profileFields.social = {};
+    profileFields.social = social;
+
+    /*
     if (twitter) profileFields.social.twitter = twitter;
     if (facebook) profileFields.social.facebook = facebook;
     if (linkedin) profileFields.social.linkedin = linkedin;
+    */
 
+    console.log(profileFields);
     try {
       // Using upsert option (creates new doc if no match is found):
       let profile = await Profile.findOneAndUpdate(
@@ -76,6 +78,7 @@ router.post(
         { $set: profileFields },
         { new: true, upsert: true, setDefaultsOnInsert: true }
       );
+      console.log(profile);
       return res.json(profile);
     } catch (err) {
       console.error(err.message);

@@ -35,7 +35,7 @@ const NewscardLayout = ({ news }) => {
     >
       <Link to={news.url}>
         <CardImg
-          style={{}}
+          style={{ maxHeight: "40%" }}
           src={news.urlToImage}
           className="card-img-top"
           alt="..."

@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-//const company = require("../../models/Company");
 const request = require("request");
 const config = require("config");
 const fetch = require("node-fetch");
+const NewsAPI = require("newsapi");
+const newsapi = new NewsAPI(config.newsApiKey);
 //const Exchange = "BSE";
+
 let counter = config.counter;
 const alphaKey = config.alphaKeys;
 
@@ -83,7 +85,8 @@ router.get("/:symbol/:duration", (req, res) => {
   }
 });
 
-//@route GET api/data/compare/:symbol1/:symbol2/:duration
+//@route GET
+
 //@desc Get compare company timeseries data
 //@access Pubic
 router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
@@ -94,32 +97,36 @@ router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
     const request1 = await fetch(
       `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol1"]}&apikey=${key}`
     );
-    var data1 = await request1.json();
+    let data1 = await request1.json();
 
     const request2 = await fetch(
       `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol2"]}&apikey=${key}`
     ).catch((error) => console.log(error));
-    var data2 = await request2.json();
-    const KEY = Object.keys(data1);
-    var dataOP = {};
+    let data2 = await request2.json();
+    //console.log(data1, data2);
+    const KEY = Object.keys(data2);
+    const dataOP = {};
     data1 = data1[KEY[1]];
     data2 = data2[KEY[1]];
-    const dates = Object.keys(data1);
-    const dates2 = Object.keys(data2);
 
-    //console.log(data1[dates[1]]);
-    for (
-      var i = 0;
-      i < (dates.length > dates2.length ? dates.length : dates2.length);
-      i++
-    ) {
-      // console.log(i);
-      dataOP[dates[i]] = {
-        first: data1[dates[i]]["4. close"] ? data1[dates[i]]["4. close"] : "",
-        second: data2[dates[i]]["4. close"] ? data2[dates[i]]["4. close"] : "",
-      };
+    if (data1 && data2) {
+      const dates = Object.keys(data1);
+      const dates2 = Object.keys(data2);
+      console.log(data1);
+      //console.log(data1[dates[1]]);
+      (dates.length > dates2.length ? dates2 : dates).forEach((date) => {
+        if (data1[date] && data2[date]) {
+          dataOP[date] = {
+            first: data1[date]["4. close"],
+            second: data2[date]["4. close"],
+          };
+        }
+      });
+      console.log(dataOP);
+      return res.json(dataOP);
+    } else {
+      return res.status(404).json({ msg: "Company not found" });
     }
-    return res.json(dataOP);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -130,22 +137,22 @@ router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
 // @route    GET api/data/news
 // @desc     Get news
 // @access   Public
-// router.get("/news", async (req, res) => {
-//   try {
-//     const uri = encodeURI(
-//       `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=${newsApi}`
-//     );
-//     const headers = {
-//       "user-agent": "node.js",
-//       Authorization: `token ${config.get("githubToken")}`,
-//     };
-
-//     const gitHubResponse = await axios.get(uri, { headers });
-//     return res.json(gitHubResponse.data);
-//   } catch (err) {
-//     console.error(err.message);
-//     return res.status(404).json({ msg: "No Github profile found" });
-//   }
-// });
+router.get("/news", async (req, res) => {
+  try {
+    newsapi.v2
+      .topHeadlines({
+        category: "business",
+        language: "en",
+        country: "in",
+      })
+      .then((response) => {
+        // console.log(response);
+        return res.json(response);
+      });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(404).json({ msg: "Something went wrong" });
+  }
+});
 
 module.exports = router;

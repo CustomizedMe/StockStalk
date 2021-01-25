@@ -21,7 +21,18 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   className="form-control"
                   placeholder="username..."
                   onChange={onChange}
-                  value={profile.user.username}
+                  // onChange={({ target }) =>
+                  //   onChange({
+                  //     target: {
+                  //       name: "user",
+                  //       value: {
+                  //         ...profile.user,
+                  //         [target.name]: target.value,
+                  //       },
+                  //     },
+                  //   })
+                  // }
+                  value={(profile.user || { username: "" }).username}
                 />
               </div>
             </div>
@@ -35,7 +46,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   onChange={onChange}
                   className="form-control"
                   placeholder="Name..."
-                  value={profile.user.name}
+                  value={(profile.user || { name: "" }).name}
                 />
               </div>
             </div>
@@ -124,7 +135,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                 <input
                   type="text"
                   name="facebook"
-                  //value={profile.social.facebook || ""}
+                  value={(profile.social || { facebook: "" }).facebook}
                   onChange={({ target }) =>
                     onChange({
                       target: {
@@ -161,7 +172,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   }
                   className="form-control"
                   placeholder="Twitter Url"
-                  //value={profile.social.twitter || " "}
+                  value={(profile.social || { twitter: "" }).twitter}
                 />
               </div>
             </div>
@@ -184,7 +195,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   }
                   className="form-control"
                   placeholder="LinkedIn Url"
-                  //value={profile.social.linkedin || ""}
+                  value={(profile.social || { linkedin: "" }).linkedin}
                 />
               </div>
             </div>
