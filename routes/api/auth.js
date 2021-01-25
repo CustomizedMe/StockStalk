@@ -3,13 +3,17 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //require("dotenv").config();
 >>>>>>> 3f8aaba59c3e9708e7caac83d22b12cb63a98798
+=======
+//require("dotenv").config();
+>>>>>>> jan21
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
-const User = require("../../models/User");
+const User = require("../../models/user");
 
 // @route  POST api/auth/register
 // @desc   registering the user
@@ -54,7 +58,11 @@ router.post(
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
       await user.save();
+<<<<<<< HEAD
 
+=======
+      const jwtSecret = config.get("jwtSecret");
+>>>>>>> jan21
       //Return jsonwebtoken
       const payload = {
         user: {

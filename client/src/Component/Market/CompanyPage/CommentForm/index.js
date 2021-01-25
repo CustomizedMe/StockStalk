@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import * as commentApi from "../../../../Api/CommentApi";
 //import { Redirect } from "react-router-dom";
+=======
+import React from "react";
+>>>>>>> jan21
 
 const CommentForm = ({ onSubmit, CommentData, onChange }) => {
   return (

@@ -5,6 +5,7 @@ import ProfileForm from "./ProfileForm";
 import * as ProfileApi from "../../Api/ProfileApi";
 
 const EditProfile = ({ history }) => {
+<<<<<<< HEAD
   const initial_profile = {
     social: {
       twitter: "twitter.com",
@@ -26,6 +27,9 @@ const EditProfile = ({ history }) => {
     regdate: "2021-01-10T11:23:26.027Z",
     __v: 0,
   };
+=======
+  const initial_profile = {};
+>>>>>>> jan21
   const [profile, setProfile] = useState(initial_profile);
 
   const onChange = ({ target }) => {
@@ -35,12 +39,20 @@ const EditProfile = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     //console.log(profile);
+=======
+    console.log(profile);
+>>>>>>> jan21
     ProfileApi.editProfile(profile)
       .then((data) => {
         //console.log(data);
         setProfile(data);
+<<<<<<< HEAD
         history.push("/market");
+=======
+        history.push("/profile");
+>>>>>>> jan21
       })
       .catch((err) => {
         console.log(err);

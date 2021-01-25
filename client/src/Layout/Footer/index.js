@@ -16,9 +16,15 @@ export default function index() {
               <Link to="#" className="text-white">
                 <i className="icon fab fa-facebook fa-2x mx-3 my-auto"></i>
               </Link>
+<<<<<<< HEAD
               <Link to="#" className="text-white">
                 <i className="icon fab fa-twitter fa-2x mx-3 my-auto"></i>
               </Link>
+=======
+              <a href="https://fb.com" className="text-white">
+                <i className="icon fab fa-twitter fa-2x mx-3 my-auto"></i>
+              </a>
+>>>>>>> jan21
               <Link to="#" className="text-white">
                 <i className="icon fab fa-linkedin fa-2x mx-3 my-auto"></i>
               </Link>
