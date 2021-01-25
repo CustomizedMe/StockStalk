@@ -12,7 +12,7 @@ app.use(express.json({ extended: false }));
 
 //Define Ports
 const PORT = process.env.PORT || 8888;
-app.get("/", (req, res) => res.send("API Running"));
+//app.get("/", (req, res) => res.send("API Running"));
 
 //Routes
 const getauth = require("./routes/api/auth");
