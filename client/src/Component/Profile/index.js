@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import PageLayout from "../../Layout/PageLayout";
 import * as ProfileApi from "../../Api/ProfileApi";
 import * as CommentApi from "../../Api/CommentApi";
@@ -10,7 +9,7 @@ import { connect } from "react-redux";
 
 const Profile = ({ props, username, location }) => {
   const currentUsername = location.pathname.split("/")[2] || username;
-  //console.log(currentUsername, username);
+  console.log(currentUsername, username);
   const initial_post = [];
   const [isMyProfile, setIsMyProfile] = useState(username === currentUsername);
 
@@ -30,14 +29,8 @@ const Profile = ({ props, username, location }) => {
   useEffect(() => {
     CommentApi.userComments(currentUsername).then((data) => {
       setPost(data);
-      // console.log("comments here");
-      // console.log(data);
-      // console.log(posts);
     });
   }, [currentUsername]);
-
-  // console.log("posts here");
-  // console.log(posts);
 
   return (
     <PageLayout page="profile">

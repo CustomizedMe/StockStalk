@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { loginAction } from "../../Action/AuthAction";
 import PageLayout from "../../Layout/PageLayout";
@@ -6,6 +6,7 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import * as authApi from "../../Api/AuthApi";
 import { registerUser } from "../../Api/AuthApi";
+import { editProfile } from "../../Api/ProfileApi";
 
 function Register({ login, location, history }) {
   const [formDetails, setFormDetails] = useState({
@@ -25,7 +26,6 @@ function Register({ login, location, history }) {
   };
   const onLoginSubmit = (e) => {
     e.preventDefault();
-    // const { username, password } = formDetails;
     const loginData = {
       username: formDetails.username,
       password: formDetails.password,
@@ -44,11 +44,9 @@ function Register({ login, location, history }) {
   };
   const onRegisterSubmit = (e) => {
     e.preventDefault();
-    //console.log(Formdata.username)
     registerUser(formDetails)
       .then((data) => {
         console.log(data);
-        //login(data);
         history.push("/enter/login");
       })
       .catch((err) => {
@@ -65,7 +63,6 @@ function Register({ login, location, history }) {
             <div>
               {register ? (
                 <RegisterForm
-                  // toggleRegister={() => {history.push}}
                   onSubmit={onRegisterSubmit}
                   registerDetails={formDetails}
                   onChange={onChange}

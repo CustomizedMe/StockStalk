@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import PageLayout from "../../Layout/PageLayout";
 import ProfileForm from "./ProfileForm";
 import * as ProfileApi from "../../Api/ProfileApi";
@@ -7,7 +6,8 @@ import * as ProfileApi from "../../Api/ProfileApi";
 const EditProfile = ({ history }) => {
   const initial_profile = {};
   const [profile, setProfile] = useState(initial_profile);
-
+  console.log("profilehere");
+  console.log(profile);
   const onChange = ({ target }) => {
     const { name, value } = target;
     setProfile({ ...profile, [name]: value });
@@ -18,13 +18,12 @@ const EditProfile = ({ history }) => {
     console.log(profile);
     ProfileApi.editProfile(profile)
       .then((data) => {
-        //console.log(data);
         setProfile(data);
         history.push("/profile");
       })
       .catch((err) => {
         console.log(err);
-        alert("ProfileEdit error");
+        alert("Edit profile error");
       });
     history.push("/profile");
   };

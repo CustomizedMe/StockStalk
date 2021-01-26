@@ -1,13 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import PageLayout from "../../Layout/PageLayout";
 import MarketForm from "./MarketForm";
 import CompanyPage from "./CompanyPage";
 import * as MarketApi from "../../Api/MarketApi";
 import * as CommentApi from "../../Api/CommentApi";
-import { Redirect } from "react-router-dom";
 import NewsCard from "./NewsCard";
-import CommentForm from "./CompanyPage/CommentForm";
 
 //Initial States for GET APIs
 const initial_News = [];

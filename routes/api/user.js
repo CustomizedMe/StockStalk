@@ -14,13 +14,34 @@ router.get("/profile/me", auth, async (req, res) => {
     const profile = await Profile.findOne({
       user: req.user.id,
     }).populate("user", ["username", "name"]);
-    //console.log("Profile");
+    console.log(profile);
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
     res.json(profile);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+// @route    GET api/profile/:username
+// @desc     Get profile by user ID
+// @access   Public
+router.get("/profile/:username", auth, async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    console.log(user);
+    const profile = await Profile.findOne({
+      user: user._id,
+    }).populate("user", ["name"]);
+
+    if (!profile) return res.status(400).json({ msg: "Profile not found" });
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({ msg: "Profile not found" });
+    }
     res.status(500).send("Server Error");
   }
 });
@@ -87,32 +108,10 @@ router.post(
   }
 );
 
-// @route    GET api/profile/:username
-// @desc     Get profile by user ID
-// @access   Public
-router.get("/profile/:username", auth, async (req, res) => {
-  try {
-    const user = await User.findOne({ username: req.params.username });
-    console.log(user);
-    const profile = await Profile.findOne({
-      user: user._id,
-    }).populate("user", ["name"]);
-
-    if (!profile) return res.status(400).json({ msg: "Profile not found" });
-    res.json(profile);
-  } catch (err) {
-    console.error(err.message);
-    if (err.kind == "ObjectId") {
-      return res.status(400).json({ msg: "Profile not found" });
-    }
-    res.status(500).send("Server Error");
-  }
-});
-
 // @route    GET api/profile
 // @desc     Get all profiles
 // @access   Public
-router.get("/profile/users/all", auth, async (req, res) => {
+router.get("/profile/users/all", async (req, res) => {
   try {
     const profiles = await Profile.find().populate("user", [
       "username",
@@ -163,7 +162,7 @@ router.post(
 // @route Get api/user/comment/all
 // @desc get all comments
 // @access Private
-router.get("/comment/all", auth, async (req, res) => {
+router.get("/comment/all", async (req, res) => {
   try {
     const allcomments = await Comment.find().sort({ date: -1 });
     res.json(allcomments);
@@ -175,7 +174,7 @@ router.get("/comment/all", auth, async (req, res) => {
 // @route Get api/user/comment/:username
 // @desc get all comments
 // @access Private
-router.get("/comment/:username", auth, async (req, res) => {
+router.get("/comment/:username", async (req, res) => {
   try {
     const Username = req.params.username; //change this to logged -in user id
     /*const userID = User.
@@ -194,7 +193,7 @@ router.get("/comment/:username", auth, async (req, res) => {
 // @route Get api/user/comment/company/:symbol
 // @desc get comments in a company
 // @access Private
-router.get("/comment/company/:symbol", auth, async (req, res) => {
+router.get("/comment/company/:symbol", async (req, res) => {
   try {
     const Symbol = req.params.symbol;
     const result = await Comment.find({ symbol: Symbol }).populate("comments");

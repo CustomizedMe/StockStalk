@@ -35,6 +35,17 @@ export default function NavBar({ loggedIn, black, page, logout }) {
                 Market
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                to="/compare"
+                className={
+                  "nav-link text-white" + (page === "compare" ? " active" : "")
+                }
+              >
+                {" "}
+                Compare
+              </Link>
+            </li>
 
             <li className="nav-item">
               <Link
@@ -81,7 +92,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
                     "nav-link  text-white" + (page === "enter" ? " active" : "")
                   }
                 >
-                  Enter
+                  Login/Register
                 </Link>
               </li>
             )}

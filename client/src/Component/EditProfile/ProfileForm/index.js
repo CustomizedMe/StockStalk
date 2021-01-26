@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Card, CardTitle, Form } from "reactstrap";
 
 const ProfileForm = ({ profile, onChange, onSubmit }) => {
@@ -21,17 +20,6 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   className="form-control"
                   placeholder="username..."
                   onChange={onChange}
-                  // onChange={({ target }) =>
-                  //   onChange({
-                  //     target: {
-                  //       name: "user",
-                  //       value: {
-                  //         ...profile.user,
-                  //         [target.name]: target.value,
-                  //       },
-                  //     },
-                  //   })
-                  // }
                   value={(profile.user || { username: "" }).username}
                 />
               </div>

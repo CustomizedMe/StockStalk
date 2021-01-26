@@ -9,7 +9,6 @@ export function userComments(person) {
 }
 const getconfig = {
   headers: {
-    "Content-Type": "application/json",
     "x-auth-token": localStorage.getItem("token"),
   },
 };

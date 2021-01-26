@@ -1,25 +1,6 @@
 import Axios from "axios";
+
 const BASE_URL = "/api/user";
-
-export async function getProfile(user_id) {
-  const url = BASE_URL + `/profile/${user_id}`;
-  const data = await Axios.get(url, {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
-  return data.data;
-}
-
-export async function getMyProfile() {
-  const url = BASE_URL + "/profile/me";
-  const data = await Axios.get(url, {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
-  return data.data;
-}
 
 const config = {
   headers: {
@@ -27,9 +8,28 @@ const config = {
     "x-auth-token": localStorage.getItem("token"),
   },
 };
-export async function editProfile(profile) {
-  console.log(`edit profile called with company ${profile.company}`);
+const getconfig = {
+  headers: {
+    "x-auth-token": localStorage.getItem("token"),
+  },
+};
+
+export function getProfile(username) {
+  const url = BASE_URL + `/profile/${username}`;
+  console.log(`profile called for @${username}`);
+  return Axios.get(url, config).then((data) => data.data);
+}
+
+export function getMyProfile() {
+  console.log(`my profile called for @${localStorage.getItem("username")}`);
+  const url = BASE_URL + "/profile/me";
+  return Axios.get(url, getconfig).then((data) =>
+    console.log(`data here ${data}`)
+  );
+}
+
+export function editProfile(profile) {
+  console.log(`edit profile called with profile ${profile}`);
   const url = BASE_URL + "/profile";
-  const data = await Axios.post(url, profile, config);
-  return data.data;
+  return Axios.post(url, profile, config).then((data) => data.data);
 }
