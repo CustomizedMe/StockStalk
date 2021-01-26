@@ -4,9 +4,19 @@ import ProfileForm from "./ProfileForm";
 import * as ProfileApi from "../../Api/ProfileApi";
 
 const EditProfile = ({ history }) => {
-  const initial_profile = {};
+  const initial_profile = {
+    social: {},
+    user: {
+      username: "Username here",
+      name: "Name here",
+    },
+    about: "",
+    company: "",
+    designation: "",
+    picture: "",
+  };
   const [profile, setProfile] = useState(initial_profile);
-  console.log("profilehere");
+  console.log("profile here");
   console.log(profile);
   const onChange = ({ target }) => {
     const { name, value } = target;
@@ -30,6 +40,7 @@ const EditProfile = ({ history }) => {
 
   useEffect(() => {
     ProfileApi.getMyProfile().then((data) => {
+      console.log("get my proflie called");
       console.log(data);
       setProfile(data);
     });

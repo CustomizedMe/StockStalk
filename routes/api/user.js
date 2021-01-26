@@ -14,23 +14,36 @@ router.get("/profile/me", auth, async (req, res) => {
     const profile = await Profile.findOne({
       user: req.user.id,
     }).populate("user", ["username", "name"]);
+    console.log("profile me ke baad");
     console.log(profile);
+
+    profile_new = new Profile({
+      user: req.user.id,
+      about: "",
+      company: "",
+      designation: "",
+    });
+
     if (!profile) {
-      return res.status(400).json({ msg: "There is no profile for this user" });
+      profile_new.save();
+      res.json(profile_new);
     }
+
+    ///if (!profile) return res.status(400).json({ msg: "Profile not found" });
     res.json(profile);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
+
 // @route    GET api/profile/:username
 // @desc     Get profile by user ID
 // @access   Public
 router.get("/profile/:username", auth, async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
-    console.log(user);
+    //console.log(user);
     const profile = await Profile.findOne({
       user: user._id,
     }).populate("user", ["name"]);
@@ -64,16 +77,9 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
     // destructure the request
-    const {
-      company,
-      designation,
-      about,
-      gender,
-      picture,
-      social,
-      // spread the rest of the fields we don't need to check...rest
-    } = req.body;
+    const { company, designation, about, gender, picture, social } = req.body;
     // Build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
@@ -84,13 +90,6 @@ router.post(
     if (picture) profileFields.picture = picture;
     // Build social object
     profileFields.social = social;
-
-    /*
-    if (twitter) profileFields.social.twitter = twitter;
-    if (facebook) profileFields.social.facebook = facebook;
-    if (linkedin) profileFields.social.linkedin = linkedin;
-    */
-
     console.log(profileFields);
     try {
       // Using upsert option (creates new doc if no match is found):
@@ -99,6 +98,7 @@ router.post(
         { $set: profileFields },
         { new: true, upsert: true, setDefaultsOnInsert: true }
       );
+
       console.log(profile);
       return res.json(profile);
     } catch (err) {
@@ -171,6 +171,7 @@ router.get("/comment/all", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 // @route Get api/user/comment/:username
 // @desc get all comments
 // @access Private
@@ -203,7 +204,9 @@ router.get("/comment/company/:symbol", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
 /*
+
 // @route    POST api/posts/comment/:id
 // @desc     Comment on a post
 // @access   Private
@@ -257,6 +260,7 @@ router.put("/comment/:comment_id", async (req, res) => {
       .send("Server error");
     }
   });
-  */
+  
+*/
 
 module.exports = router;

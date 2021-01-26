@@ -57,7 +57,7 @@ router.get("/:symbol/:duration", (req, res) => {
     if (counter == 4) counter = 0;
     else counter = counter + 1;
     let key = alphaKey[counter];
-    console.log(key);
+    //console.log(key);
     const options = {
       uri: `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol"]}&apikey=${key}`,
       method: "GET",
@@ -68,7 +68,7 @@ router.get("/:symbol/:duration", (req, res) => {
         throw error;
       }
       body = JSON.parse(body);
-      console.log(body);
+      //console.log(body);
       if (body["Error Message"]) {
         return res.status(500).json({ msg: "Please wait" });
       }
@@ -112,7 +112,7 @@ router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
     if (data1 && data2) {
       const dates = Object.keys(data1);
       const dates2 = Object.keys(data2);
-      console.log(data1);
+      //console.log(data1);
       //console.log(data1[dates[1]]);
       (dates.length > dates2.length ? dates2 : dates).forEach((date) => {
         if (data1[date] && data2[date]) {
@@ -122,7 +122,7 @@ router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
           };
         }
       });
-      console.log(dataOP);
+      //console.log(dataOP);
       return res.json(dataOP);
     } else {
       return res.status(404).json({ msg: "Company not found" });

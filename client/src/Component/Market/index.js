@@ -75,7 +75,6 @@ const Market = ({ location, history }) => {
         }
       })
       .catch((err) => {
-        // console.log(err.response);
         alert(err.response.data.msg || "Server error");
         // setTimeout(() => history.push("/market"), 2000);
       });

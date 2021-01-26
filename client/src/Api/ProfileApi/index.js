@@ -14,22 +14,23 @@ const getconfig = {
   },
 };
 
-export function getProfile(username) {
+export async function getProfile(username) {
   const url = BASE_URL + `/profile/${username}`;
   console.log(`profile called for @${username}`);
-  return Axios.get(url, config).then((data) => data.data);
+  const data = await Axios.get(url, config);
+  return data.data;
 }
 
-export function getMyProfile() {
+export async function getMyProfile() {
   console.log(`my profile called for @${localStorage.getItem("username")}`);
   const url = BASE_URL + "/profile/me";
-  return Axios.get(url, getconfig).then((data) =>
-    console.log(`data here ${data}`)
-  );
+  const data = await Axios.get(url, getconfig);
+  return data.data;
 }
 
-export function editProfile(profile) {
+export async function editProfile(profile) {
   console.log(`edit profile called with profile ${profile}`);
   const url = BASE_URL + "/profile";
-  return Axios.post(url, profile, config).then((data) => data.data);
+  const data = await Axios.post(url, profile, config);
+  return data.data;
 }

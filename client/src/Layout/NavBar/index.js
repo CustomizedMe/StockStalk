@@ -99,7 +99,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
           </ul>
           <form className="d-flex" onSubmit={onSubmit}>
             <input
-              className="form-control me-2"
+              className="form-control me-2 bg-light"
               type="search"
               placeholder="Search"
               aria-label="Search"
