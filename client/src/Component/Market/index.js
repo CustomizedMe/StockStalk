@@ -29,7 +29,7 @@ const Market = ({ location, history }) => {
   const [CommentDataForm, setCommentDataForm] = useState({
     text: "",
   });
-  console.log(companyName, "Prahar", CommentDataForm);
+  //console.log(companyName, "Prahar", CommentDataForm);
   useEffect(() => {
     MarketApi.newsFeed().then((data) => {
       // console.log("news here");

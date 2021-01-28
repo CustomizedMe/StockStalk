@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Collapse, NavbarToggler } from "reactstrap";
+import { Button, Collapse, Container, NavbarToggler } from "reactstrap";
 
 export default function NavBar({ loggedIn, black, page, logout }) {
   const [search, setSearch] = useState("");
@@ -18,10 +18,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
     };
   });
   const updateCollapse = () => {
-    if (
-      window.innerWidth < 1200
-      // && collapseOpen
-    ) {
+    if (window.innerWidth < 1200 && collapseOpen) {
       setcollapseOpen(true);
     } else {
       setcollapseOpen(false);
@@ -38,7 +35,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
         (black ? " navbar-dark1" : "")
       }
     >
-      <div className="container text-uppercase font-mont">
+      <Container className="text-uppercase font-mont">
         <Link to="/" className="navbar-brand fs-1 text-light">
           <span className="text-light text-uppercase fw-bold">Stock</span>
           Stalk
@@ -126,7 +123,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
           </ul>
           <form className="d-flex" onSubmit={onSubmit}>
             <input
-              className="form-control me-2 bg-light"
+              className="form-control me-2 bg-light text-dark"
               type="search"
               placeholder="Search"
               aria-label="Search"
@@ -140,7 +137,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
             ></Button>
           </form>
         </Collapse>
-      </div>
+      </Container>
     </nav>
   );
 }

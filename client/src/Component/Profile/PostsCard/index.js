@@ -10,11 +10,11 @@ const PostsCard = ({ posts = [] }) => {
   return (
     <>
       <Card className="card text-white px-4 shadow-lg">
-        <CardTitle className="h3 my-3 mx-auto text-white">
+        <CardTitle className="h2 mt-4 mx-auto text-white p-2">
           {" "}
           Posts by the user{" "}
         </CardTitle>
-        <div className="scroll">
+        <div className="containerNew scrollingDiv">
           {posts.map(function (object, i) {
             return <CommentCard comment={object} key={i} flag={i % 2} />;
           })}

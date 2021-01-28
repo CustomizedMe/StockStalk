@@ -2,22 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 // reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardText,
-  FormGroup,
-  Form,
-  Input,
-  Row,
-  Col,
-} from "reactstrap";
+import { Button, Card, CardBody, CardFooter, CardText } from "reactstrap";
 
 const AboutCard = ({ profile, isMyProfile, username }) => {
   //console.log(profile);
+  const TwitterUrl = (profile.social || { twitter: "" }).twitter;
+  const FacebookUrl = (profile.social || { facebook: "" }).facebook;
+  const LinkedinUrl = (profile.social || { linkedin: "" }).linkedin;
+
+  //console.log(TwitterUrl);
   return (
     <div>
       <Card className="card-user">
@@ -70,9 +63,11 @@ const AboutCard = ({ profile, isMyProfile, username }) => {
               }}
             >
               <a
-                href={(profile.social || { twitter: "" }).twitter}
+                href={TwitterUrl}
                 className="btn-icon btn-round"
                 color="twitter"
+                target="_blank"
+                rel="noreferrer"
               >
                 <i className=" text-white fab fa-twitter"></i>
               </a>
@@ -85,8 +80,10 @@ const AboutCard = ({ profile, isMyProfile, username }) => {
               }}
             >
               <a
-                href={(profile.social || { facebook: "" }).facebook}
+                href={FacebookUrl}
                 className="text-white icon "
+                target="_blank"
+                rel="noreferrer"
               >
                 <i className=" fab fa-facebook"></i>
               </a>
@@ -99,8 +96,10 @@ const AboutCard = ({ profile, isMyProfile, username }) => {
               }}
             >
               <a
-                href={(profile.social || { linkedin: "" }).linkedin}
+                href={LinkedinUrl}
                 className="text-white icon "
+                target="_blank"
+                rel="noreferrer"
               >
                 <i className="fab fa-linkedin"></i>
               </a>
@@ -126,6 +125,8 @@ const AboutCard = ({ profile, isMyProfile, username }) => {
 AboutCard.propTypes = {};
 
 export default AboutCard;
+
+/*
 {
   /* 
 
@@ -180,4 +181,3 @@ export default AboutCard;
           ""
         )}
       </div> */
-}

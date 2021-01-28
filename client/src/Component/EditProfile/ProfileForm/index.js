@@ -72,6 +72,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   className="form-control"
                   placeholder="company..."
                   value={profile.company}
+                  required
                 />
               </div>
             </div>
@@ -85,6 +86,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   className="form-control"
                   placeholder="Designation..."
                   value={profile.designation}
+                  required
                 />
               </div>
             </div>
@@ -100,6 +102,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                 placeholder="About me"
                 value={profile.about}
                 name="about"
+                required
               ></textarea>
             </div>
           </div>
