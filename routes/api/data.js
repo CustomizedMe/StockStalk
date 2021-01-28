@@ -86,7 +86,6 @@ router.get("/:symbol/:duration", (req, res) => {
 });
 
 //@route GET
-
 //@desc Get compare company timeseries data
 //@access Pubic
 router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
@@ -128,6 +127,7 @@ router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
           };
         }
       });
+      //console.log(dataOP);
       return res.json(dataOP);
     } else {
       return res.status(404).json({ msg: "Company not found" });

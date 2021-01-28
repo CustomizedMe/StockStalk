@@ -14,8 +14,8 @@ router.get("/profile/me", auth, async (req, res) => {
     const profile = await Profile.findOne({
       user: req.user.id,
     }).populate("user", ["username", "name"]);
-    console.log("profile me ke baad");
-    console.log(profile);
+
+    //console.log(profile);
 
     ///if (!profile) return res.status(400).json({ msg: "Profile not found" });
     res.json(profile);

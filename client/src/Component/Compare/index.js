@@ -8,7 +8,7 @@ const Compare = ({ location, history }) => {
   const pathName = location.pathname;
   const company1 = pathName.split("/")[2];
   const company2 = pathName.split("/")[3];
-  const [compareData, setCompareData] = useState(null);
+  const [compareData, setCompareData] = useState({});
   const initial_CompanyForm = {
     company1,
     company2,
@@ -29,24 +29,24 @@ const Compare = ({ location, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (
-      company1 === companyForm.company1 &&
-      company2 === companyForm.company2
-    ) {
-      return;
-    }
+    // if (
+    //   company1 === companyForm.company1 &&
+    //   company2 === companyForm.company2
+    // ) {
+    //   return;
+    // }
     setCompareData(null);
     history.push(`/compare/${companyForm.company1}/${companyForm.company2}`);
   };
   const fetchCompareData = () => {
-    setMsg("loading");
+    setMsg("Loading");
     MarketApi.compareChart(company1, company2, currentStatus)
       .then((data) => {
         setCompareData(data);
       })
       .catch((err) => {
         console.log(err.response);
-        setCompareData(null);
+        setCompareData({});
         setMsg(err.response.data.msg);
       });
   };
@@ -67,7 +67,7 @@ const Compare = ({ location, history }) => {
               company1={company1}
             />
           ) : company1 && company2 ? (
-            <h2>{msg}</h2>
+            <h2 align="center">{msg}</h2>
           ) : (
             <></>
           )}
