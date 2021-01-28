@@ -7,6 +7,7 @@ import RegisterForm from "./RegisterForm";
 import * as authApi from "../../Api/AuthApi";
 import { registerUser } from "../../Api/AuthApi";
 import { editProfile } from "../../Api/ProfileApi";
+import { Card, Container } from "reactstrap";
 
 function Register({ login, location, history }) {
   const [formDetails, setFormDetails] = useState({
@@ -57,9 +58,9 @@ function Register({ login, location, history }) {
 
   return (
     <PageLayout page="enter">
-      <section className="dark min-vh-100 pb-5 padTop-5">
-        <div className="container pt-5 ">
-          <div className="card bg-dark text-center p-4 shadow-lg w-50 m-auto">
+      <section className="min-vh-100 pb-5 padTop-5">
+        <Container className="pt-5">
+          <Card className="text-center p-4 shadow-lg w-50 m-auto">
             <div>
               {register ? (
                 <RegisterForm
@@ -76,8 +77,8 @@ function Register({ login, location, history }) {
                 />
               )}
             </div>
-          </div>
-        </div>
+          </Card>
+        </Container>
       </section>
     </PageLayout>
   );

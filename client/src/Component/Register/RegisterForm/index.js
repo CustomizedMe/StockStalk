@@ -9,8 +9,8 @@ const RegisterForm = ({
   onChange,
 }) => {
   return (
-    <div className="register-form text-white">
-      <h2 className="mb-5 ">Register</h2>
+    <div>
+      <h2 className="mb-5 mt-4">Register</h2>
       <form className="form my-3 w-75 mx-auto" onSubmit={onSubmit}>
         <div className="form-group my-3">
           {/* <label className="label"> Name</label> */}
@@ -70,7 +70,7 @@ const RegisterForm = ({
 
         <input
           type="submit"
-          className=" mt-4 w-50 btn btn-outline-light"
+          className=" mt-4 btn btn-outline-light"
           value="Register"
         />
       </form>

@@ -3,18 +3,21 @@ import PageLayout from "../../Layout/PageLayout";
 import ProfileForm from "./ProfileForm";
 import * as ProfileApi from "../../Api/ProfileApi";
 
-const EditProfile = ({ history }) => {
+import { connect } from "react-redux";
+
+const EditProfile = ({ history, loggedIn }) => {
   const initial_profile = {
-    social: {},
-    user: {
-      username: "Username here",
-      name: "Name here",
-    },
-    about: "",
-    company: "",
-    designation: "",
-    picture: "",
+    // social: {},
+    // user: {
+    //   username: "Username here",
+    //   name: "Name here",
+    // },
+    // about: "",
+    // company: "",
+    // designation: "",
+    // picture: "",
   };
+  console.log("Prakhar loggedIn", loggedIn);
   const [profile, setProfile] = useState(initial_profile);
   console.log("profile here");
   console.log(profile);
@@ -40,11 +43,11 @@ const EditProfile = ({ history }) => {
 
   useEffect(() => {
     ProfileApi.getMyProfile().then((data) => {
-      console.log("get my proflie called");
+      console.log("get my profile called");
       console.log(data);
       setProfile(data);
     });
-  }, []);
+  }, [loggedIn]);
 
   return (
     <PageLayout page="profile">
@@ -63,4 +66,8 @@ const EditProfile = ({ history }) => {
 
 EditProfile.propTypes = {};
 
-export default EditProfile;
+const mapStateToProps = (state) => ({
+  loggedIn: state.loggedIn,
+});
+
+export default connect(mapStateToProps)(EditProfile);

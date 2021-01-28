@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
+import { Button, Card, CardHeader } from "reactstrap";
+
 const SChart = ({ data, status, onChangeStatus }) => {
   const times = Object.keys(data);
   const plotData = times.map((time) => {
@@ -19,10 +21,20 @@ const SChart = ({ data, status, onChangeStatus }) => {
       type: "candlestick",
       height: 350,
     },
-    /*title: {
-      text: "CandleStick Chart",
-      align: "left",
-    },*/
+    plotOptions: {
+      bar: {
+        columnWidth: "20%",
+      },
+    },
+    candlestick: {
+      wick: {
+        useFillColor: true,
+      },
+      colors: {
+        upward: "#3C90EB",
+        downward: "#DF7D46",
+      },
+    },
     xaxis: {
       type: "datetime",
     },
@@ -33,54 +45,54 @@ const SChart = ({ data, status, onChangeStatus }) => {
     },
   };
   return (
-    <div className="card bg-white text-dark p-4">
-      <div className="card-header bg-white text-center my-2">
-        <ul class="nav nav-pills row ">
+    <Card className="bg-white p-4">
+      <CardHeader className="bg-white text-center my-2">
+        <ul className="nav nav-pills row ">
           <li className="nav-item col-4">
-            <button
+            <Button
               className={
                 "nav-link w-100 " +
-                (status === "daily" ? " btn-dark" : "btn-outline-dark")
+                (status === "daily" ? " btn-dark" : "btn-simple")
               }
               onClick={() => onChangeStatus("daily")}
             >
               Daily
-            </button>
+            </Button>
           </li>
           <li className="nav-item col-4">
-            <button
+            <Button
               className={
                 "nav-link w-100 " +
-                (status === "monthly" ? " btn-dark" : "btn-outline-dark")
+                (status === "monthly" ? " btn-dark" : "btn-simple")
               }
               onClick={() => onChangeStatus("monthly")}
             >
               Monthly
-            </button>
+            </Button>
           </li>
           <li className="nav-item col-4 ">
-            <button
+            <Button
               className={
                 "nav-link w-100 " +
-                (status === "weekly" ? " btn-dark" : "btn-outline-dark")
+                (status === "weekly" ? " btn-dark" : "btn-simple")
               }
               onClick={() => onChangeStatus("weekly")}
             >
               Weekly
-            </button>
+            </Button>
           </li>
         </ul>
-      </div>
+      </CardHeader>
       <div className="card-body">
         <Chart
           options={options}
           series={series}
           type="candlestick"
-          width={650}
+          width={750}
           height={350}
         />
       </div>
-    </div>
+    </Card>
   );
 };
 

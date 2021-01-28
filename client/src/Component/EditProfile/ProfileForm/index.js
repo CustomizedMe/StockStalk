@@ -8,7 +8,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
         <h2>Edit Profile</h2>
       </CardTitle>
       <div className="card-body">
-        <Form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="row my-2">
             <div className="col-4 ">
               <div className="form-group">
@@ -20,7 +20,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   className="form-control"
                   placeholder="username..."
                   onChange={onChange}
-                  value={(profile.user || { username: "" }).username}
+                  value={(profile.user || { username: "" }).username || ""}
                 />
               </div>
             </div>
@@ -34,7 +34,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   onChange={onChange}
                   className="form-control"
                   placeholder="Name..."
-                  value={(profile.user || { name: "" }).name}
+                  value={(profile.user || { name: "" }).name || ""}
                 />
               </div>
             </div>
@@ -123,7 +123,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                 <input
                   type="text"
                   name="facebook"
-                  value={(profile.social || { facebook: "" }).facebook}
+                  value={(profile.social || { facebook: "" }).facebook || ""}
                   onChange={({ target }) =>
                     onChange({
                       target: {
@@ -160,7 +160,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   }
                   className="form-control"
                   placeholder="Twitter Url"
-                  value={(profile.social || { twitter: "" }).twitter}
+                  value={(profile.social || { twitter: "" }).twitter || ""}
                 />
               </div>
             </div>
@@ -183,7 +183,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
                   }
                   className="form-control"
                   placeholder="LinkedIn Url"
-                  value={(profile.social || { linkedin: "" }).linkedin}
+                  value={(profile.social || { linkedin: "" }).linkedin || ""}
                 />
               </div>
             </div>
@@ -193,7 +193,7 @@ const ProfileForm = ({ profile, onChange, onSubmit }) => {
             className="btn btn-outline-light w-25 my-3"
             value="Save"
           />
-        </Form>
+        </form>
       </div>
     </Card>
   );

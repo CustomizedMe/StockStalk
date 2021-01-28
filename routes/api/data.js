@@ -98,11 +98,17 @@ router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
       `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol1"]}&apikey=${key}`
     );
     let data1 = await request1.json();
+    if (data1["Error Message"]) {
+      return res.status(500).json({ msg: "Please wait" });
+    }
 
     const request2 = await fetch(
       `https://www.alphavantage.co/query?function=TIME_SERIES_${req.params["duration"]}_ADJUSTED&symbol=BSE:${req.params["symbol2"]}&apikey=${key}`
     ).catch((error) => console.log(error));
     let data2 = await request2.json();
+    if (data2["Error Message"]) {
+      return res.status(500).json({ msg: "Please wait" });
+    }
     //console.log(data1, data2);
     const KEY = Object.keys(data2);
     const dataOP = {};
@@ -122,7 +128,6 @@ router.get("/compare/:symbol1/:symbol2/:duration", async (req, res) => {
           };
         }
       });
-      //console.log(dataOP);
       return res.json(dataOP);
     } else {
       return res.status(404).json({ msg: "Company not found" });

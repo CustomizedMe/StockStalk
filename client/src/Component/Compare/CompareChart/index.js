@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Container } from "reactstrap";
 
 const CompareChart = ({ compareData, company1, company2 }) => {
   var dates = Object.keys(compareData);
@@ -33,15 +33,21 @@ const CompareChart = ({ compareData, company1, company2 }) => {
       },
     ],
     stroke: {
-      width: [1, 2],
+      width: [2, 2],
     },
     plotOptions: {
-      bar: {
+      line: {
         columnWidth: "20%",
       },
     },
     xaxis: {
       categories: dates,
+      labels: {
+        style: {
+          colors: "#dadada",
+          fontSize: "8.5px",
+        },
+      },
     },
     yaxis: [
       {
@@ -104,17 +110,20 @@ const CompareChart = ({ compareData, company1, company2 }) => {
     },
   };
   return (
-    <div className="container">
-      <Card>
+    <Container className="mt-4">
+      <Card
+        className="mx-auto my-auto p-4 mt-2"
+        style={{ overflowX: "scroll", overflowY: "hidden" }}
+      >
         <Chart
           options={options}
           series={options.series}
           type="line"
           width={1000}
-          height={350}
+          height={400}
         />
       </Card>
-    </div>
+    </Container>
   );
 };
 

@@ -19,14 +19,14 @@ const CompanyPage = ({
   return (
     <div className="text-white">
       <div className="row mb-10 ">
-        <div className="col-8">
+        <div className="col-lg-9 col-md-12">
           <SChart
             data={chartData}
             status={status}
             onChangeStatus={onChangeStatus}
           />
         </div>
-        <div className="col-4">
+        <div className="col-lg-3 col-md-12">
           <MetaData data={data} />
         </div>
       </div>

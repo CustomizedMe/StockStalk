@@ -34,7 +34,7 @@
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
+  --breakpoint-lg: 1100px;
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
@@ -20055,8 +20055,12 @@ body {
 }
 /* --gray: #6c757d;
 --gray-dark: #32325d */
+
 .padTop-5 {
   padding-top: 10%;
+}
+.padTop-3 {
+  padding-top: 7%;
 }
 .box {
   text-align: center;
@@ -20125,4 +20129,9 @@ body {
 
 font-mont {
   font-family: "Montserrat";
+}
+@media (max-width: 720px) {
+  .padTop-3 {
+    padding-top: 20%;
+  }
 }

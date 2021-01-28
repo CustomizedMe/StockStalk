@@ -12,15 +12,15 @@ const ProfileSchema = new Schema({
   },
   company: {
     type: String,
-    required: true,
+    //required: true,
   },
   designation: {
     type: String,
-    required: true,
+    //required: true,
   },
   about: {
     type: String,
-    required: true,
+    //required: true,
   },
   picture: {
     type: String,

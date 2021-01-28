@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const MarketForm = ({ onSubmit, company, onChange }) => {
   return (
@@ -12,7 +11,7 @@ const MarketForm = ({ onSubmit, company, onChange }) => {
             value={company}
             onChange={onChange}
             className="form-control py-3"
-            placeholder="Enter company..."
+            placeholder="Enter company's BSE Symbol eg: RELIANCE, ITC etc"
           />
         </div>
       </form>

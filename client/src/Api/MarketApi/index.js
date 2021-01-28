@@ -2,16 +2,16 @@ import Axios from "axios";
 
 const BASE_URL = "/api/";
 
-const getconfig = {
+const getconfig = () => ({
   headers: {
     "Content-Type": "application/json",
     "x-auth-token": localStorage.getItem("token"),
   },
-};
+});
 
 export function companyComments(company) {
   const url = BASE_URL + `user/comment/company/${company}`;
-  return Axios.get(url, getconfig).then((data) => data.data);
+  return Axios.get(url, getconfig()).then((data) => data.data);
 }
 
 export function companyInfo(company) {

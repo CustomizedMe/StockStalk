@@ -30,7 +30,7 @@ export default function Home() {
         <div className="container d-flex justify-content-around align-items-center flex-wrap">
           <div className="box">
             <i className="fas fa-building fa-3x my-2"></i>
-            <h2 className="fw-bold">300+</h2>
+            <h2 className="fw-bold">5,000+</h2>
             <p className="text-primary fs-4">Company Stocks</p>
           </div>
           <div className="box">

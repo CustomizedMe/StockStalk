@@ -8,7 +8,9 @@ export const AuthReducer = (state = initialState.loggedIn, action) => {
       localStorage.setItem("username", action.payload.username);
       return action.payload;
     case LOGOUT:
-      return false;
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      return {};
     default:
       return state;
   }

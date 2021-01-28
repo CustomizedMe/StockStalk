@@ -1,14 +1,13 @@
 import React from "react";
+import { Button, Card, CardHeader, Input } from "reactstrap";
 
 const CommentForm = ({ onSubmit, CommentData, onChange }) => {
   return (
-    <div className="card bg-dark my-5">
-      <div className="card-header">
-        <h2>Post Comment</h2>
-      </div>
+    <Card className="my-5 px-5 pb-4">
+      <CardHeader className="h2 text-center my-2">Post Comment</CardHeader>
       <form onSubmit={onSubmit}>
-        <div className="form-group d-flex justify-content-center">
-          <div className="d-flex justify-content-center">
+        <div className="form-group">
+          <div className="my-2 mb-4">
             <textarea
               cols="120"
               rows="4"
@@ -19,14 +18,14 @@ const CommentForm = ({ onSubmit, CommentData, onChange }) => {
               value={CommentData.text}
             ></textarea>
           </div>
-          <div className="justify-content-right align-center">
-            <button type="submit" className="btn btn-primary mt-5">
+          <div className="my-1 float-right">
+            <Button type="submit" color="primary">
               Post
-            </button>
+            </Button>
           </div>
         </div>
       </form>
-    </div>
+    </Card>
   );
 };
 

@@ -1,19 +1,40 @@
-import React, { useState } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
-import { Button } from "reactstrap";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { Button, Collapse, NavbarToggler } from "reactstrap";
+
 export default function NavBar({ loggedIn, black, page, logout }) {
   const [search, setSearch] = useState("");
   let history = useHistory();
   const onSubmit = (e) => {
     e.preventDefault();
-
     history.push("/market/" + search);
     setSearch("");
   };
+  const [collapseOpen, setcollapseOpen] = useState(false);
+  useEffect(() => {
+    window.addEventListener("resize", updateCollapse);
+    return function cleanup() {
+      window.removeEventListener("resize", updateCollapse);
+    };
+  });
+  const updateCollapse = () => {
+    if (
+      window.innerWidth < 1200
+      // && collapseOpen
+    ) {
+      setcollapseOpen(true);
+    } else {
+      setcollapseOpen(false);
+    }
+  };
+  const toggleCollapse = () => {
+    setcollapseOpen(!collapseOpen);
+  };
+
   return (
     <nav
       className={
-        "navbar fixed-top navbar-expand-lg navbar-dark" +
+        "navbar fixed-top navbar-expand-md navbar-dark" +
         (black ? " navbar-dark1" : "")
       }
     >
@@ -22,7 +43,13 @@ export default function NavBar({ loggedIn, black, page, logout }) {
           <span className="text-light text-uppercase fw-bold">Stock</span>
           Stalk
         </Link>
-        <div className="collapse navbar-collapse  ">
+        <NavbarToggler onClick={toggleCollapse}>
+          <span className="navbar-toggler-bar navbar-kebab" />
+          <span className="navbar-toggler-bar navbar-kebab" />
+          <span className="navbar-toggler-bar navbar-kebab" />
+        </NavbarToggler>
+        {/* <div className="collapse navbar-collapse"> */}
+        <Collapse navbar isOpen={collapseOpen}>
           <ul className="navbar-nav ms-auto me-5">
             <li className="nav-item">
               <Link
@@ -112,7 +139,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
               type="submit"
             ></Button>
           </form>
-        </div>
+        </Collapse>
       </div>
     </nav>
   );

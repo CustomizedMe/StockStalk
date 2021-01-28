@@ -28,12 +28,12 @@ const Market = ({ location, history }) => {
   const [NewsData, setNewsData] = useState(initial_News);
   const [CommentDataForm, setCommentDataForm] = useState({
     text: "",
-    symbol: companyName,
   });
+  console.log(companyName, "Prahar", CommentDataForm);
   useEffect(() => {
     MarketApi.newsFeed().then((data) => {
-      console.log("news here");
-      console.log(data.articles);
+      // console.log("news here");
+      // console.log(data.articles);
       setNewsData(data.articles);
     });
   }, []);
@@ -42,6 +42,7 @@ const Market = ({ location, history }) => {
     if (companyName) {
       fetchMetaData();
       fetchCommentData();
+      // setCommentDataForm({ ...CommentDataForm, symbol: companyName });
     }
   }, [companyName]);
 
@@ -100,11 +101,14 @@ const Market = ({ location, history }) => {
   };
   const onSubmitForm = (e) => {
     e.preventDefault();
-    setCommentDataForm({ ...CommentDataForm, text: "" });
-    CommentApi.addComment(CommentDataForm).then((data) => {
-      // console.log(data);
-      setCommentData([data, ...CommentData]);
-    });
+    console.log(CommentDataForm);
+    CommentApi.addComment({ ...CommentDataForm, symbol: companyName }).then(
+      (data) => {
+        // console.log(data);
+        setCommentData([data, ...CommentData]);
+        setCommentDataForm({ text: "" });
+      }
+    );
   };
 
   const onChangeCompanyForm = ({ target }) => {

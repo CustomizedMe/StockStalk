@@ -17,18 +17,6 @@ router.get("/profile/me", auth, async (req, res) => {
     console.log("profile me ke baad");
     console.log(profile);
 
-    profile_new = new Profile({
-      user: req.user.id,
-      about: "",
-      company: "",
-      designation: "",
-    });
-
-    if (!profile) {
-      profile_new.save();
-      res.json(profile_new);
-    }
-
     ///if (!profile) return res.status(400).json({ msg: "Profile not found" });
     res.json(profile);
   } catch (err) {
@@ -43,11 +31,11 @@ router.get("/profile/me", auth, async (req, res) => {
 router.get("/profile/:username", auth, async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
-    //console.log(user);
+    console.log(user);
     const profile = await Profile.findOne({
       user: user._id,
     }).populate("user", ["name"]);
-
+    console.log(profile);
     if (!profile) return res.status(400).json({ msg: "Profile not found" });
     res.json(profile);
   } catch (err) {
@@ -127,37 +115,23 @@ router.get("/profile/users/all", async (req, res) => {
 // @route POST api/user/comment/add
 // @desc Create a comment
 // @access Private
-router.post(
-  "/comment/add",
-  [
-    auth,
-    [
-      check("text", "Test is required").not().isEmpty(),
-      check("symbol", "Company is required").not().isEmpty(),
-    ],
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    try {
-      const user = await User.findById(req.user.id).select("-password");
-      const newComment = new Comment({
-        text: req.body.text,
-        symbol: req.body.symbol,
-        username: user.username,
-        user: req.user.id,
-      });
+router.post("/comment/add", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    const newComment = new Comment({
+      text: req.body.text,
+      symbol: req.body.symbol,
+      username: user.username,
+      user: req.user.id,
+    });
 
-      const post = await newComment.save();
-      res.json(post);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
+    const post = await newComment.save();
+    res.json(post);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
-);
+});
 
 // @route Get api/user/comment/all
 // @desc get all comments

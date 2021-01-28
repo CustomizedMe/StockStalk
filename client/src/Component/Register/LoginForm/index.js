@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const LoginForm = ({ toggleRegister, onSubmit, login, onChange, alert1 }) => {
   return (
-    <div className="register-form text-white">
-      <h2 className="mb-5 ">Login</h2>
+    <div>
+      <h2 className="mb-5 mt-4">Login</h2>
       {alert1 ? (
         <div className="alert alert-warning">Some error have come up</div>
       ) : (
@@ -40,7 +40,7 @@ const LoginForm = ({ toggleRegister, onSubmit, login, onChange, alert1 }) => {
 
         <input
           type="submit"
-          className=" mt-4 w-50 btn btn-outline-light"
+          className="mt-4 btn btn-outline-light mx-auto"
           value="Login"
         />
       </form>

@@ -7,6 +7,7 @@ const config = require("config");
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 const User = require("../../models/user");
+const Profile = require("../../models/profile");
 
 // @route  POST api/auth/register
 // @desc   registering the user
@@ -51,25 +52,13 @@ router.post(
       //Encrypt password
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
-      await user.save();
-      const jwtSecret = config.get("jwtSecret");
-      //Return jsonwebtoken
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
-      jwt.sign(
-        payload,
-        jwtSecret,
-        {
-          expiresIn: 36000,
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+      const userSaved = await user.save();
+      // console.log(userSaved);
+      profile_new = new Profile({
+        user: userSaved._id,
+      });
+      const profile = await profile_new.save();
+      return res.status(201).json({ user, msg: "User created" });
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");

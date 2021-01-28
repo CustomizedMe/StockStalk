@@ -7,16 +7,17 @@ import EditProfile from "../Component/EditProfile/";
 import Market from "../Component/Market";
 import Faqs from "../Component/Faqs";
 import Compare from "../Component/Compare";
+import PrivateRoute from "./PrivateRoute";
 export default function AppRoute() {
   return (
     <>
       <Route exact path="/" component={Home} />
       <Route path="/enter" component={Register} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/editProfile" component={EditProfile} />
-      <Route path="/market" component={Market} />
-      <Route path="/faqs" component={Faqs} />
-      <Route path="/compare" component={Compare} />
+      <Route exact path="/faqs" component={Faqs} />
+      <PrivateRoute exact path="/profile" component={Profile} />
+      <PrivateRoute exact path="/editProfile" component={EditProfile} />
+      <PrivateRoute exact path="/market" component={Market} />
+      <PrivateRoute exact path="/compare" component={Compare} />
     </>
   );
 }
