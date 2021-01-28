@@ -5,7 +5,7 @@ import Register from "../Component/Register";
 import Profile from "../Component/Profile";
 import EditProfile from "../Component/EditProfile/";
 import Market from "../Component/Market";
-import Faqs from "../Component/Faqs";
+import Faqs from "../Component/FAQs";
 import Compare from "../Component/Compare";
 import PrivateRoute from "./PrivateRoute";
 export default function AppRoute() {
