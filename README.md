@@ -15,9 +15,9 @@ Project ideation was simple so as to create an application as one point resource
 [link to Mindmap!](https://miro.com/app/board/o9J_lbEYlCo=/)
 
 
-### Wireframing
+## Wireframing
 
-## Website flow and database
+### Website flow and database
 
 MongoDB is used for Database purpose. Created Models for User, Profile of users, Comments, Company.
 ![hippo](./client/src/Assests/img/Application.png)
@@ -25,7 +25,7 @@ MongoDB is used for Database purpose. Created Models for User, Profile of users,
 Here is the intial wireframe for the project.
 ![hippo](./client/src/Assests/img/wireframe.gif)
 
-## Technologies and APIs
+#### Technologies and APIs
 
 Application is made using MERN stack.
 The stocks data is fetched from AlphaVantage API and News data from NewsAPI.
