@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import PageLayout from "../../Layout/PageLayout";
-import { Link } from "react-router-dom";
-import { Collapse } from "reactstrap";
 import FaqCard from "./FaqCard";
 
 const Faqs = (props) => {

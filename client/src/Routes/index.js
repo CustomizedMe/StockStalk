@@ -5,10 +5,11 @@ import Register from "../Component/Register";
 import Profile from "../Component/Profile";
 import EditProfile from "../Component/EditProfile/";
 import Market from "../Component/Market";
-import Faqs from "../Component/FAQs";
+import Faqs from "../Component/Faq";
 import Compare from "../Component/Compare";
-import PrivateRoute from "./PrivateRoute";
+
 import NotFound from "../Component/NotFound";
+import PrivateRoute from "./PrivateRoute";
 export default function AppRoute() {
   return (
     <>
