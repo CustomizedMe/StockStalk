@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Keys and Secrets
-config/*.json
+config/default.json
