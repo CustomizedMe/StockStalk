@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 const Profile = ({ props, username, location }) => {
   const currentUsername = location.pathname.split("/")[2] || username;
-  console.log(currentUsername, username);
+  // console.log(currentUsername, username);
   const initial_post = [];
   const [isMyProfile, setIsMyProfile] = useState(username === currentUsername);
 
@@ -20,8 +20,6 @@ const Profile = ({ props, username, location }) => {
   useEffect(() => {
     ProfileApi.getProfile(currentUsername).then((data) => {
       setProfile(data);
-      console.log("profile here");
-      console.log(data);
       setIsMyProfile(username === currentUsername);
     });
   }, [currentUsername, username]);

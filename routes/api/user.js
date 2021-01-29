@@ -31,11 +31,11 @@ router.get("/profile/me", auth, async (req, res) => {
 router.get("/profile/:username", auth, async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
-    console.log(user);
+    // console.log(user);
     const profile = await Profile.findOne({
       user: user._id,
     }).populate("user", ["name"]);
-    console.log(profile);
+    // console.log(profile);
     if (!profile) return res.status(400).json({ msg: "Profile not found" });
     res.json(profile);
   } catch (err) {
@@ -78,7 +78,7 @@ router.post(
     if (picture) profileFields.picture = picture;
     // Build social object
     profileFields.social = social;
-    console.log(profileFields);
+    // console.log(profileFields);
     try {
       // Using upsert option (creates new doc if no match is found):
       let profile = await Profile.findOneAndUpdate(
@@ -87,7 +87,7 @@ router.post(
         { new: true, upsert: true, setDefaultsOnInsert: true }
       );
 
-      console.log(profile);
+      // console.log(profile);
       return res.json(profile);
     } catch (err) {
       console.error(err.message);

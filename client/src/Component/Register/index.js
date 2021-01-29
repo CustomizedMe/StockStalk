@@ -34,7 +34,7 @@ function Register({ login, location, history }) {
     authApi
       .loginUser(loginData)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         login(data);
         history.push("/market");
       })
@@ -47,7 +47,7 @@ function Register({ login, location, history }) {
     e.preventDefault();
     registerUser(formDetails)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         history.push("/enter/login");
       })
       .catch((err) => {

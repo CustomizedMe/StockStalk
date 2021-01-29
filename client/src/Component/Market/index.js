@@ -57,7 +57,7 @@ const Market = ({ location, history }) => {
       .then((data) => {
         const keys = Object.keys(data);
         const report = data[keys[1]];
-        console.log(chartData);
+        // console.log(chartData);
         setChartData(report);
       })
       .catch((err) => {
@@ -68,8 +68,8 @@ const Market = ({ location, history }) => {
   const fetchMetaData = () => {
     MarketApi.companyInfo(companyName)
       .then((data) => {
-        console.log("data here");
-        console.log(data);
+        // console.log("data here");
+        // console.log(data);
         if (data["Global Quote"]) {
           setData(data);
         } else {

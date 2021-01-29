@@ -15,7 +15,7 @@ export async function getProfile(username) {
 }
 
 export async function getMyProfile() {
-  console.log(`my profile called for @${localStorage.getItem("username")}`);
+  // console.log(`my profile called for @${localStorage.getItem("username")}`);
   const url = BASE_URL + "/profile/me";
   const getconfig = {
     headers: {
@@ -27,7 +27,7 @@ export async function getMyProfile() {
 }
 
 export async function editProfile(profile) {
-  console.log(`edit profile called with profile ${profile}`);
+  // console.log(`edit profile called with profile ${profile}`);
   const url = BASE_URL + "/profile";
   const config = {
     headers: {

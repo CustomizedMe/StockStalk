@@ -17,10 +17,10 @@ const EditProfile = ({ history, loggedIn }) => {
     // designation: "",
     // picture: "",
   };
-  console.log("Prakhar loggedIn", loggedIn);
+  // console.log("Prakhar loggedIn", loggedIn);
   const [profile, setProfile] = useState(initial_profile);
-  console.log("profile here");
-  console.log(profile);
+  // console.log("profile here");
+  // console.log(profile);
   const onChange = ({ target }) => {
     const { name, value } = target;
     setProfile({ ...profile, [name]: value });
@@ -28,7 +28,7 @@ const EditProfile = ({ history, loggedIn }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(profile);
+    // console.log(profile);
     ProfileApi.editProfile(profile)
       .then((data) => {
         setProfile(data);
@@ -43,8 +43,8 @@ const EditProfile = ({ history, loggedIn }) => {
 
   useEffect(() => {
     ProfileApi.getMyProfile().then((data) => {
-      console.log("get my profile called");
-      console.log(data);
+      // console.log("get my profile called");
+      // console.log(data);
       setProfile(data);
     });
   }, [loggedIn]);
