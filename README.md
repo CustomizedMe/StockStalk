@@ -1,7 +1,7 @@
 # StockStalk
 
 A MERN stack Web-Application developed for investors, finance enthusiasts. Using StockStalk people you can analyze stocks, compare them, you can also comment about stocks. Build your profile, watch other's views on a company page or user profile and you can also see the latest financial news, all of this in real-time.
-[Here the link to the Live Project!](https://https://stockstalk.herokuapp.com/)
+[Here is the link to the Live Project!](https://https://stockstalk.herokuapp.com/)
 
 ![](./client/src/Assests/img/project.gif)
 
@@ -10,12 +10,14 @@ A MERN stack Web-Application developed for investors, finance enthusiasts. Using
 ### Ideation
 
 Project ideation was simple so as to create an application as one point resource for investors. Here is the mindmap of the project ideation.
+
 ![hippo](./client/src/Assests/img/Mindmap.png)
 [link to Mindmap!](https://miro.com/app/board/o9J_lbEYlCo=/)
 
+
 ### Wireframing
 
-### Website flow and database
+## Website flow and database
 
 MongoDB is used for Database purpose. Created Models for User, Profile of users, Comments, Company.
 ![hippo](./client/src/Assests/img/Application.png)
