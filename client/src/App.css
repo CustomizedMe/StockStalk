@@ -18868,7 +18868,6 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   margin-top: 30%;
 }
-
 .transparent {
   background-color: #fff;
 }
@@ -18886,6 +18885,9 @@ body {
 }
 .padTop-3 {
   padding-top: 7%;
+}
+.padTop-1 {
+  padding-top: 5%;
 }
 .box {
   text-align: center;
@@ -18943,7 +18945,6 @@ body {
 }
 
 .panel-heading [data-toggle="collapse"].collapsed:after {
-  /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
@@ -18958,6 +18959,9 @@ font-mont {
 @media (max-width: 720px) {
   .padTop-3 {
     padding-top: 20%;
+  }
+  .padTop-1 {
+    padding-top: 10%;
   }
 }
 
@@ -18978,4 +18982,30 @@ div.scrollingDiv {
 ::-webkit-scrollbar-thumb {
   background: #adb5bd;
   border-radius: 4px;
+}
+
+/* .notfound_bg::after {
+  background: url("./Assests/img/chartBG.svg") no-repeat 100px -200px;
+  background-repeat: no-repeat;
+  /* background-size: cover; 
+  height: 200px;
+  opacity: 0.1;
+  */
+
+.notfound_bg {
+  position: relative;
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  background: url("./Assests/img/chartA.svg") no-repeat 100px -200px;
+  background-position: left bottom;
+}
+.notfound_bg::before {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1;
+  opacity: 0.3;
 }

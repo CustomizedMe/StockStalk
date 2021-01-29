@@ -8,9 +8,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Switch>
+        <AppRoute />
+        {/* <Switch>
           <AppRoute />
-        </Switch>
+        </Switch> */}
       </Router>
     </Provider>
   );

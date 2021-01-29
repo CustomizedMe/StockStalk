@@ -31,7 +31,7 @@ export default function NavBar({ loggedIn, black, page, logout }) {
   return (
     <nav
       className={
-        "navbar fixed-top navbar-expand-md navbar-dark" +
+        "navbar fixed-top navbar-expand-lg navbar-dark" +
         (black ? " navbar-dark1" : "")
       }
     >
