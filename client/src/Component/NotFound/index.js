@@ -22,7 +22,7 @@ const NotFound = (props) => {
                 Sorry, the page you were looking for doesn't exist
               </h3>
               <br></br>
-              <Link to="/faqs">
+              <Link to="/">
                 <Button className="simple">Go to home</Button>
               </Link>
             </div>
